@@ -1,0 +1,74 @@
+.promo-mobile {
+  display: none;
+}
+
+@media screen and (max-width: $sm) {
+  .promo-mobile {
+    width: 100%;
+    border-radius: 20rem;
+    position: relative;
+
+    padding: 48rem 12rem 10rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &__title {
+      font-size: 36rem;
+      font-weight: 700;
+      line-height: 40rem;
+      color: $text;
+      padding: 0 8rem 27rem;
+
+      width: 100%;
+    }
+
+    &__content {
+      width: 100%;
+      flex-direction: column;
+      display: flex;
+      background-color: $white;
+      padding: 11rem 12rem 12rem;
+      border-radius: 20rem;
+    }
+
+    &__img {
+      padding-bottom: 15rem;
+    }
+
+    &__text {
+      font-size: 21rem;
+      font-weight: 700;
+      line-height: 26rem;
+      padding: 0 8rem;
+      padding-bottom: 11rem;
+      &:nth-child(3) {
+        font-size: 17rem;
+        font-weight: 400;
+        line-height: 25rem;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+
+    &__button {
+      font-size: 16rem;
+      font-weight: 500;
+      line-height: 19rem;
+      color: $white;
+      padding: 17rem 81rem;
+      border-radius: 12rem;
+      background-color: $blue;
+      width: 100%;
+      max-width: 100%;
+      margin-top: 85rem;
+      text-decoration: none;
+      text-align: center;
+
+      &:hover {
+        background-color: $deep-blue;
+        transition: 0.5s linear;
+      }
+    }
+  }
+}

@@ -1,0 +1,191 @@
+@media screen and (max-width: $sm) {
+  .mobile-menu {
+    position: relative;
+    z-index: 100;
+    top: 0;
+
+    display: flex;
+    flex-flow: column;
+
+    width: 100%;
+    margin: 0;
+
+    &__head {
+      z-index: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      min-height: 55rem;
+      padding: 0 20rem 0 12rem;
+      background-color: $white;
+
+      img {
+        &:nth-child(2) {
+          margin: 0 16rem;
+          width: 7rem;
+        }
+      }
+    }
+
+    &__logos-insurance {
+      width: 117rem;
+
+      img {
+        width: 117rem;
+        padding-top: 17rem;
+      }
+    }
+
+    &__logos-vsk {
+      width: 96rem;
+      img {
+        width: 96rem;
+      }
+    }
+
+    &__logos {
+      display: flex;
+      align-items: end;
+      padding-bottom: 10rem;
+    }
+
+    &__wrapper {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+
+      display: flex;
+      overflow: hidden;
+      align-items: center;
+      flex-flow: column;
+      justify-content: center;
+
+      width: 100%;
+      height: 0;
+      padding: 0 40rem;
+      background-color: $white;
+
+      list-style: none;
+
+      transition: height 0.3s ease-in-out;
+      text-align: center;
+
+      border-radius: 15rem;
+
+      font-size: 16rem;
+
+      will-change: height;
+      box-shadow: 0px 2px 15px rgba(47, 52, 65, 0.13);
+
+      &.is-active {
+        height: 345rem;
+        padding-top: 21rem;
+      }
+
+      li {
+        width: 100%;
+        padding: 0 0 23rem;
+
+        a {
+          display: block;
+
+          text-decoration: none;
+
+          color: inherit;
+          font-size: 20rem;
+          line-height: 23rem;
+
+          &:hover {
+            color: $deep-blue;
+            transition: 0.5s linear;
+          }
+        }
+
+        &:last-child {
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $sm) {
+  .menu {
+    position: relative;
+    z-index: 100;
+    top: 0;
+    left: 50%;
+
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    max-width: 1332rem;
+    min-height: 77rem;
+    padding: 40rem 142rem 46rem;
+
+    transform: translateX(-50%);
+    background-color: $bg-gray;
+
+    border-radius: 15rem;
+
+    font-size: 16rem;
+
+    &__logos {
+      display: flex;
+      align-items: end;
+      img {
+        &:nth-child(2) {
+          margin: 0 20rem 0 22rem;
+          width: 10rem;
+        }
+      }
+    }
+
+    &__logos-vsk {
+      width: 148rem;
+    }
+
+    &__logos-insurance {
+      width: 155rem;
+      margin-bottom: 2px;
+      padding-top: 16.73rem;
+
+      &img {
+        width: 94rem;
+        height: 13rem;
+      }
+    }
+
+    &__list {
+      display: flex;
+      list-style-type: none;
+      flex-flow: row;
+      flex-grow: 1;
+      justify-content: space-between;
+      align-items: end;
+      padding: 0;
+      max-width: 553rem;
+
+      a {
+        text-decoration: none;
+        color: $text;
+        font-size: 16rem;
+        line-height: 19rem;
+        padding: 20rem 0;
+
+        &:hover {
+          color: $deep-blue;
+          transition: 0.5s linear;
+        }
+      }
+    }
+  }
+
+  .mobile-menu__hamburger {
+    display: none;
+  }
+}

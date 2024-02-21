@@ -1,0 +1,150 @@
+.questions {
+  max-width: 1048rem;
+  width: 100%;
+  margin: 0 auto 120rem;
+
+  h2 {
+    font-size: 48rem;
+    line-height: 46rem;
+    font-weight: 700;
+    color: $text;
+    padding-bottom: 46rem;
+  }
+
+  button {
+    border: none;
+    border-radius: 50%;
+    height: 31rem;
+    padding: 0;
+    width: 31rem;
+    margin: 24rem 28rem 0 0;
+    background: $white;
+
+    img {
+      height: 31rem;
+      width: 31rem;
+
+      &:hover {
+        opacity: 0.7;
+        transition: 0.5s linear;
+      }
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 20rem;
+    justify-content: space-between;
+    list-style-type: none;
+  }
+
+  &__title {
+    font-size: 22rem;
+    line-height: 29rem;
+    font-weight: 500;
+    color: $text;
+    max-width: 840rem;
+    width: 100%;
+    padding: 24rem 0 28rem 28rem;
+  }
+
+  &__text {
+    opacity: 0;
+    padding: 0 28rem 0;
+    color: transparent;
+    height: 0;
+    transition: opacity 0.3s linear, padding 0.3s linear, color 0s linear;
+  }
+}
+
+.is-open {
+  display: block;
+  font-size: 18rem;
+  line-height: 25rem;
+  font-weight: 400;
+  color: $text;
+  max-width: 650rem;
+  width: 100%;
+  height: auto;
+  padding: 0 28rem 28rem;
+  margin-top: -18rem;
+  opacity: 1;
+  font-family: inter;
+}
+
+.transform-button {
+  transform: rotate(45deg);
+  transition: linear 0.3s;
+}
+
+@media screen and (max-width: $sm) {
+  br {
+    display: none;
+  }
+
+  .questions {
+    max-width: 1048rem;
+    width: 100%;
+    margin: 0 auto 12rem;
+    padding: 0 12rem;
+
+    h2 {
+      font-size: 32rem;
+      line-height: 35rem;
+      padding-bottom: 16rem;
+    }
+
+    button {
+      padding: 0;
+      margin: 0 22rem 0 18rem;
+      width: 31rem;
+      height: 100%;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    &__wrapper {
+      align-items: center;
+    }
+
+    &__title {
+      font-size: 16rem;
+      line-height: 19rem;
+      padding: 22rem 0 22rem 22rem;
+      letter-spacing: -0.15rem;
+      max-width: 281rem;
+    }
+
+    &__item {
+      &:nth-child(4) {
+        h3 {
+          max-width: 200rem;
+        }
+      }
+    }
+  }
+
+  .is-open {
+    font-size: 16rem;
+    line-height: 19rem;
+    padding: 0 22rem 22rem;
+    margin-top: -14rem;
+  }
+}

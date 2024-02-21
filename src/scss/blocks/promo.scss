@@ -1,0 +1,70 @@
+@media screen and (min-width: $sm) {
+  .promo {
+    width: 100%;
+    max-width: 1332rem;
+    height: 566rem;
+    border-radius: 20rem;
+    position: relative;
+
+    background-color: #fff;
+    background-image: url('../images/bg/bg_promo.png');
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    justify-content: flex-start;
+    align-items: start;
+
+    margin: 0 auto 100rem;
+    padding: 91rem 0 92rem 143rem;
+    display: flex;
+
+    &__content {
+      width: 100%;
+      max-width: 693rem;
+      flex-direction: column;
+      gap: 34rem;
+      margin: 0;
+      display: flex;
+    }
+
+    &__title {
+      font-size: 64rem;
+      font-weight: 700;
+      line-height: 61rem;
+      color: #000000;
+
+      width: 100%;
+    }
+
+    &__text {
+      max-width: 493rem;
+      font-size: 20rem;
+      font-weight: 400;
+      line-height: 28rem;
+    }
+
+    &__button {
+      font-size: 16rem;
+      font-weight: 500;
+      line-height: 19rem;
+      color: $white;
+      padding: 17rem 81rem;
+      border-radius: 12rem;
+      background-color: $blue;
+      width: 100%;
+      max-width: 257rem;
+      text-decoration: none;
+
+      &:hover {
+        background-color: $deep-blue;
+        transition: 0.5s linear;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $sm) {
+  .promo {
+    display: none;
+  }
+}

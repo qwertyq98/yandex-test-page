@@ -1,0 +1,128 @@
+@media screen and (min-width: $sm) {
+  .article {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24rem;
+    max-width: 1048rem;
+    border-radius: 20rem;
+    position: relative;
+
+    background-color: #fff;
+
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto 100rem;
+    padding: 3.5rem 6rem;
+
+    &__content {
+      width: 100%;
+      max-width: 693rem;
+      flex-direction: column;
+      margin: 0;
+      display: flex;
+      padding: 4rem;
+    }
+
+    &__img {
+      width: 500rem;
+      background: $bg-gray;
+      border-radius: 20rem;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &__title {
+      font-size: 28rem;
+      font-weight: 700;
+      line-height: 33rem;
+      padding-bottom: 11rem;
+
+      width: 100%;
+    }
+
+    &__text {
+      max-width: 358rem;
+      font-size: 18rem;
+      font-weight: 400;
+      line-height: 25rem;
+      padding-bottom: 15rem;
+    }
+
+    &__button {
+      font-size: 16rem;
+      font-weight: 500;
+      line-height: 19rem;
+      color: $blue;
+      padding: 0;
+      width: 100%;
+      text-decoration: none;
+      display: flex;
+      gap: 3rem;
+
+      &:hover {
+        color: $deep-blue;
+        transition: 0.5s linear;
+      }
+    }
+
+    &__arrow {
+      width: 14rem;
+    }
+  }
+}
+
+@media screen and (max-width: $sm) {
+  .article {
+    gap: 14rem;
+    height: 100%;
+
+    background-color: $white;
+    border-radius: 20rem;
+
+    margin: 0 12rem 80rem;
+    padding: 14rem;
+
+    &__content {
+      padding: 28rem 0 10rem 8rem;
+    }
+
+    &__img {
+      width: 100%;
+      background: $bg-gray;
+      border-radius: 20rem;
+      height: 100%;
+    }
+
+    &__title {
+      font-size: 22rem;
+      line-height: 26rem;
+      padding-bottom: 11rem;
+    }
+
+    &__text {
+      font-size: 18rem;
+      font-weight: 400;
+      line-height: 25rem;
+      padding-bottom: 15rem;
+    }
+
+    &__button {
+      font-size: 14rem;
+      font-weight: 500;
+      line-height: 16rem;
+      color: $blue;
+      padding: 0;
+      width: 100%;
+      text-decoration: none;
+      text-decoration: none;
+      display: flex;
+      gap: 6rem;
+    }
+
+    &__arrow {
+      width: 12rem;
+    }
+  }
+}

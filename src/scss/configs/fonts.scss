@@ -1,0 +1,25 @@
+@mixin font($fname, $fstyle, $fweight, $furlwoff2, $furlwoff) {
+  @font-face {
+    font-family: $fname;
+    font-style: $fstyle;
+    font-weight: $fweight;
+    src: url($furlwoff2) format("woff2"), url($furlwoff) format("woff");
+  }
+}
+
+@include font("yandex-text", normal, 700, "../fonts/yandex-sans-text-bold.woff2",  "../fonts/yandex-sans-text-bold.woff");
+@include font("yandex-text", normal, 500, "../fonts/yandex-sans-text-medium.woff2",  "../fonts/yandex-sans-text-medium.woff");
+@include font("yandex-text", normal, 400, "../fonts/yandex-sans-text-regular.woff2",  "../fonts/yandex-sans-text-regular.woff");
+@include font("yandex-display", normal, 700, "../fonts/yandex-sans-display-bold.woff2",  "../fonts/yandex-sans-display-bold.woff");
+@include font("Inter", normal, 400, "../fonts/inter-regular.woff2",  "../fonts/inter-regular.woff");
+
+// font-weight helper
+// 100 - Extra Light or Ultra Light
+// 200 - Light or Thin
+// 300 - Book or Demi
+// 400 - Regular or Normal
+// 500 - Medium
+// 600 - Semibold or Demibold
+// 700 - Bold
+// 800 - Black or Extra Bold or Heavy
+// 900 - Extra Black or Fat or Ultra Blac

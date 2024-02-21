@@ -1,0 +1,131 @@
+.footer {
+  margin: 0 auto;
+  padding-bottom: 54rem;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    padding: 40rem 142rem 69rem;
+    padding-bottom: 60rem;
+    width: 100%;
+    background-color: #ffffff;
+    max-width: 1332rem;
+    border-radius: 20rem;
+    margin: 0 auto;
+  }
+
+  &__logos-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-bottom: 37rem;
+    align-items: end;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    gap: 20rem;
+
+    p {
+      font-size: 14rem;
+      line-height: 20rem;
+      color: $text;
+      opacity: 0.48;
+    }
+  }
+
+  &__feedback {
+    line-height: 19rem;
+    color: $text;
+    text-decoration: none;
+  }
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+}
+
+.logos__img {
+  width: 10rem;
+  padding-top: 18rem;
+}
+
+.logos__link {
+  &--vtb {
+    padding: 0 22rem 0 0;
+  }
+
+  &--ya {
+    padding: 21rem 0 0 20rem;
+  }
+}
+
+@media screen and (max-width: $sm) {
+  .footer {
+    padding: 0;
+    border-radius: 0;
+    position: relative;
+    margin-bottom: 0;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      padding: 27rem 15rem 20rem;
+      padding-bottom: 60rem;
+      width: 100%;
+      background-color: #ffffff;
+      max-width: 1332rem;
+      border-radius: 0;
+      margin: 0 auto;
+    }
+
+    &__logos-wrapper {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 2rem;
+      padding-bottom: 30rem;
+    }
+
+    &__feedback {
+      position: absolute;
+      bottom: 15rem;
+      left: 15rem;
+      opacity: 0.48;
+      text-decoration: underline;
+    }
+  }
+
+  .logos {
+    display: flex;
+    align-items: center;
+
+    &__img {
+      padding: 0;
+      margin: 0 20rem 0 10rem;
+      width: 8rem;
+    }
+
+    &__link--vtb {
+      width: 96rem;
+      padding: 0;
+
+      img {
+        width: 96rem;
+      }
+    }
+
+    &__link--ya {
+      width: 117rem;
+      padding: 0;
+
+      img {
+        width: 117rem;
+      }
+    }
+  }
+}

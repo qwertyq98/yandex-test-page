@@ -1,0 +1,28 @@
+// для корректных брейкпоинтов на 1000px
+$sm: 999.9px;
+$lg: 1439.9px;
+
+$min: 800rem;
+
+// colors
+
+$blue: #077bed;
+$deep-blue: #0473e0;
+$light-blue: #e9eff7;
+
+$bg-gray: #f4f7fb;
+
+$text: #303340;
+$text-gray: #9c9c9c;
+$text-gray-quiz: #89929e;
+$text-gray-promo: #8e9cae;
+
+$white: #ffffff;
+
+$ease: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+
+// font-size
+
+$simple-text: 16rem;
+
+$title: 24rem;
