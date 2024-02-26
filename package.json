@@ -52,7 +52,7 @@
   "license": "ISC",
   "browserslist": "> 0.25%, not dead",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.11.0",
+    "@parcel/transformer-sass": "^2.8.3",
     "@types/animejs": "^3.1.7",
     "@types/dropzone": "^5.7.4",
     "@types/lodash": "^4.14.191",
