@@ -89,8 +89,9 @@ export const resultTemplate = (count: number) => {
           'text'
         )}<button class="quiz__result-info"></button>
         <div class="quiz__result-promocode">
-          <button class="quiz__result-close">
-          </button>${dataResults.pomocodeText}</div>
+          <div class="quiz__result-close_wrap"><button class="quiz__result-close"></button></div>${
+            dataResults.pomocodeText
+          }</div>
         </p>
       </div>
       <a class="quiz__result-button" 

@@ -1,12 +1,17 @@
 export const closePromoInfo = (info) => {
+  let yCurrent
   const yStart = parseInt(
     window.getComputedStyle(info, null).getPropertyValue('top')
   )
-  let yCurrent
+  console.log(yStart)
 
   info.addEventListener('touchstart', (e) => {
     e.preventDefault()
-    yCurrent = +e.targetTouches[0].clientY - parseInt(info.style.top) || 0
+    yCurrent =
+      +e.targetTouches[0].clientY -
+      (parseInt(window.getComputedStyle(info, null).getPropertyValue('top')) ||
+        0)
+    console.log(yCurrent)
   })
 
   info.addEventListener('touchmove', (e) => {
@@ -14,6 +19,7 @@ export const closePromoInfo = (info) => {
       e.preventDefault()
       info.style.top = +e.targetTouches[0].clientY - yCurrent + 'rem'
     }
+    console.log(info.style.top)
   })
 
   info.addEventListener('touchend', (e) => {

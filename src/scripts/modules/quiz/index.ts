@@ -44,10 +44,12 @@ determinParametersByScreen()
 prevMode = isMobileMode
 
 const showPromoHandler = () => {
+  document?.querySelector('.promo-mobile')?.remove()
+  const div = document.createElement('div')
+  div.className = 'promo-mobile'
+  document.getElementsByTagName('main')[0].prepend(div)
+
   if (isMobileMode) {
-    const div = document.createElement('div')
-    div.className = 'promo-mobile'
-    document.getElementsByTagName('main')[0].prepend(div)
     mobileTitle && document.querySelector('.promo-mobile')?.append(mobileTitle)
     document.querySelector('.promo-mobile')?.append(currentPromoElement)
   } else {
@@ -67,7 +69,7 @@ const showResultHandler = () => {
   const infoButton = resultElement?.querySelector('.quiz__result-info')
 
   closeButton?.addEventListener('click', showPromoHandler)
-  infoButton?.addEventListener('click', togglePomoInfosHandler)
+  infoButton?.addEventListener('click', togglePromoInfosHandler)
   quizCardsTemplates.push(resultElement)
 }
 
@@ -170,9 +172,8 @@ const unlockingButtonsHandler = (evt) => {
   }
 }
 
-const togglePomoInfosHandler = () => {
+const togglePromoInfosHandler = () => {
   const infoElement = document.querySelector('.quiz__result-promocode')
-  const closeButton = infoElement?.querySelector('.quiz__result-close')
   infoElement?.classList.toggle('quiz__result-promocode_active')
   closePromoInfo(infoElement)
 }
