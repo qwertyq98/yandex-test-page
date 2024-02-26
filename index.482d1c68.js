@@ -2246,15 +2246,17 @@ const determinParametersByScreen = ()=>{
 determinParametersByScreen();
 prevMode = isMobileMode;
 const showPromoHandler = ()=>{
+    document?.querySelector(".promo-mobile")?.remove();
+    const div = document.createElement("div");
+    div.className = "promo-mobile";
+    document.getElementsByTagName("main")[0].prepend(div);
     if (isMobileMode) {
-        const div = document.createElement("div");
-        div.className = "promo-mobile";
-        document.getElementsByTagName("main")[0].prepend(div);
         mobileTitle && document.querySelector(".promo-mobile")?.append(mobileTitle);
         document.querySelector(".promo-mobile")?.append(currentPromoElement);
     } else replaceElement(currentPromoElement, document.querySelector(".promo-mobile"));
     indexOfQuestion = 0;
     result = 0;
+    document?.querySelector(".quiz__result-wrapper")?.remove();
     document?.querySelector(".quiz__wrapper")?.remove();
     quizCardsTemplates = createQuizCardsTemplates((0, _data.DataQuestions));
     currentQuestionData = (0, _data.DataQuestions)[indexOfQuestion];
@@ -2264,14 +2266,14 @@ const showResultHandler = ()=>{
     const closeButton = resultElement?.querySelector(".quiz__result-button_close");
     const infoButton = resultElement?.querySelector(".quiz__result-info");
     closeButton?.addEventListener("click", showPromoHandler);
-    infoButton?.addEventListener("click", togglePomoInfosHandler);
+    infoButton?.addEventListener("click", togglePromoInfosHandler);
     quizCardsTemplates.push(resultElement);
 };
 const replaceElement = (newComponent, oldComponent)=>{
     const newElement = newComponent;
     const oldElement = oldComponent;
     const buttons = newComponent?.querySelectorAll(".quiz__answer");
-    const parent = oldElement.parentElement;
+    const parent = oldElement?.parentElement;
     const checkAnswer = currentQuestionTemplate.querySelector(".quiz__check");
     parent?.replaceChild(newElement, oldElement);
     if (!isMobileMode) buttons.forEach((button)=>button.addEventListener("click", showAnswerHandler));
@@ -2325,9 +2327,8 @@ const unlockingButtonsHandler = (evt)=>{
         checkAnswer.style["background-color"] = "#077BED";
     }
 };
-const togglePomoInfosHandler = ()=>{
+const togglePromoInfosHandler = ()=>{
     const infoElement = document.querySelector(".quiz__result-promocode");
-    const closeButton = infoElement?.querySelector(".quiz__result-close");
     infoElement?.classList.toggle("quiz__result-promocode_active");
     (0, _promocodeInfo.closePromoInfo)(infoElement);
 };
@@ -2388,86 +2389,6 @@ const DataQuestions = [
             wrong: "Не совсем. Такой&nbsp;шанс&nbsp;—&nbsp;6&nbsp;из&nbsp;100",
             text: "Немного, так что ваш киновечер, скорее всего, удастся. Если, конечно, у&nbsp;соседей не&nbsp;прорвёт трубу в&nbsp;это время. Потоп&nbsp;&mdash; причина порчи имущества в&nbsp;7&nbsp;случаях из&nbsp;100. Смотреть фильмы станет спокойнее, если застраховать риски по&nbsp;ипотеке в&nbsp;Страховом Доме ВСК"
         }
-    },
-    {
-        image: new URL(require("fd54acab0ce22e0")),
-        questionText: "Какова вероятность, что вы&nbsp;сохраните брак и&nbsp;проживёте вместе ещё один прекрасный год?",
-        questionAnswers: [
-            "3 к 10",
-            "8 к 10",
-            "1 к 20"
-        ],
-        number: 2,
-        rightAnswer: "3 к 10",
-        answerText: {
-            right: "Верно",
-            wrong: "Неверно",
-            text: "По&nbsp;официальной статистике, в&nbsp;2022 году на&nbsp;10&nbsp;браков пришлось 7&nbsp;разводов. Одна из&nbsp;причин&nbsp;&mdash; бытовые проблемы: то&nbsp;соседи зальют, то&nbsp;труба лопнет, а&nbsp;бывает и&nbsp;полная порча имущества... Характеры супруги, вероятно, не&nbsp;исправят, но&nbsp;помочь себе проще решать вопросы&nbsp;&mdash; скорее всего, могут. Например, застраховать риски по&nbsp;совместной ипотечной квартире в&nbsp;Страховом доме ВСК и&nbsp;не&nbsp;выплачивать банку остаток задолженности по&nbsp;ипотеке в&nbsp;случае действительно серьёзной бытовой аварии."
-        }
-    },
-    {
-        image: new URL(require("63dec6cacfaa7b9a")),
-        questionText: "А&nbsp;каков шанс, что вас обворуют на&nbsp;улице?",
-        questionAnswers: [
-            "1 из 1274",
-            "1 из 20 054",
-            "1 из 8687"
-        ],
-        number: 3,
-        rightAnswer: "1 из 1274",
-        answerText: {
-            right: "Да, это верно",
-            wrong: "Неверно",
-            text: "Город засыпает&nbsp;&mdash; просыпаются воры. Такой шанс&nbsp;&mdash; 1&nbsp;из&nbsp;1274. Помимо риска попасться карманникам существует куда большая опасность&nbsp;&mdash; например, приобрести квартиру с&nbsp;обременением. Так можно остаться и&nbsp;без жилплощади, и&nbsp;без денег. Страхование титула от&nbsp;Страхового дома ВСК защищает собственника ипотечной квартиры и&nbsp;в&nbsp;подобных ситуациях."
-        }
-    },
-    {
-        image: new URL(require("ba3a67789d5a7110")),
-        questionText: "Какова вероятность, что вы&nbsp;переведёте все накопления &laquo;сотруднику банка&raquo;?",
-        questionAnswers: [
-            "1 из 580 000",
-            "1 из 20 000",
-            "1 из 1"
-        ],
-        number: 4,
-        rightAnswer: "1 из 20 000",
-        answerText: {
-            right: "Верно",
-            wrong: "Неверно. Такой&nbsp;шанс&nbsp;—&nbsp;1&nbsp;к&nbsp;20&nbsp;000",
-            text: "Такой шанс&nbsp;&mdash; 1&nbsp;к 20&nbsp;000. Гораздо вероятнее приобрести квартиру на&nbsp;вторичном рынке у&nbsp;компании, находящейся на&nbsp;стадии банкротства&nbsp;&mdash; когда сделки с&nbsp;имуществом могут быть оспорены в&nbsp;судебном порядке. Если сделку признают недействительной, Страховой дом ВСК выплатит банку остаток задолженности по&nbsp;ипотеке."
-        }
-    },
-    {
-        image: new URL(require("526cea192e9a2a42")),
-        questionText: "Каков шанс, что ваша посылка не&nbsp;доедет до&nbsp;адресата, если вы&nbsp;отправите её&nbsp;через грузовую компанию?",
-        questionAnswers: [
-            "1 из 96 000",
-            "1 из 15 000",
-            "1 из 7000"
-        ],
-        number: 5,
-        rightAnswer: "1 из 96 000",
-        answerText: {
-            right: "Верно. Шанс — 1 из 96 000",
-            wrong: "Неверно. Шанс — 1 из 96 000",
-            text: "Если часто отправляете грузы, такое может произойти. Но&nbsp;посылки теряют реже, чем безвозвратно портится имущество в&nbsp;ипотечной квартире&nbsp;&mdash; например, при прорыве канализации. Жить спокойнее просто&nbsp;&mdash; оформите страхование имущества за&nbsp;5&nbsp;минут онлайн в&nbsp;Страховом доме ВСК."
-        }
-    },
-    {
-        image: new URL(require("b29b5056af79a2e0")),
-        questionText: "А&nbsp;какова вероятность, что в&nbsp;вас попадёт молния?",
-        questionAnswers: [
-            "1 из 330 000",
-            "1 из 20 000",
-            "1 из 145 000"
-        ],
-        number: 6,
-        rightAnswer: "1 из 330 000",
-        answerText: {
-            right: "Да, верно. Такой&nbsp;шанс&nbsp;—&nbsp;1&nbsp;к&nbsp;330&nbsp;000",
-            wrong: "Неверно. Такой&nbsp;шанс&nbsp;—&nbsp;1&nbsp;к&nbsp;330&nbsp;000",
-            text: "Немного. Зато молнии&nbsp;&mdash; одна из&nbsp;причин пожаров в&nbsp;квартире, наряду с&nbsp;поджогом и&nbsp;возгоранием от&nbsp;бытовой техники. Страхование имущества убережёт вас от&nbsp;выплат денег банку, если дом сгорит при пожаре."
-        }
     }
 ];
 const dataResults = {
@@ -2487,7 +2408,7 @@ const dataResults = {
     pomocodeText: "Промокод на&nbsp;скидку действует в&nbsp;период с&nbsp;18&nbsp;по&nbsp;30&nbsp;ноября 2023&nbsp;г.&nbsp;и&nbsp;дает право получения скидки в&nbsp;размере 3&nbsp;% на&nbsp;страхование имущества, жизни и&nbsp;здоровья, титула, оформляемое в&nbsp;рамках договора ипотеки, а&nbsp;также скидки в&nbsp;размере 15&nbsp;% на&nbsp;страхование имущества, жизни и&nbsp;здоровья, титула.Промокод можно применить только 1&nbsp;раз в&nbsp;отношении каждого вида страхования. Предложение не&nbsp;суммируется с&nbsp;другими акциями и&nbsp;предложениями. Страховые услуги предоставляются Страховым акционерным обществом &laquo;ВСК&raquo;, ИНН: 7710026574. Лицензия банка России от&nbsp;11.09.2015: СЛ &#8470;&nbsp;0621, СИ &#8470;&nbsp;0621, ОС &#8470;&nbsp;0621, ОС &#8470;&nbsp;0621&ndash;04, ОС &#8470;&nbsp;0621&ndash;05, ПС &#8470;&nbsp;0621."
 };
 
-},{"cfc6e04b99b6767c":"aGDDt","fd54acab0ce22e0":"iDNQP","63dec6cacfaa7b9a":"d1cyr","ba3a67789d5a7110":"5qq5U","526cea192e9a2a42":"aDYno","b29b5056af79a2e0":"ao0Yq","335daab3416314ba":"4kaAF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aGDDt":[function(require,module,exports) {
+},{"cfc6e04b99b6767c":"aGDDt","335daab3416314ba":"4kaAF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aGDDt":[function(require,module,exports) {
 module.exports = require("db849828e3f1746e").getBundleURL("7XnOB") + "question1.a45c23e9.png" + "?" + Date.now();
 
 },{"db849828e3f1746e":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -2524,22 +2445,7 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"iDNQP":[function(require,module,exports) {
-module.exports = require("d4f81c01f9019b7f").getBundleURL("7XnOB") + "question2.6a4ed7d8.png" + "?" + Date.now();
-
-},{"d4f81c01f9019b7f":"lgJ39"}],"d1cyr":[function(require,module,exports) {
-module.exports = require("bedba9b749047173").getBundleURL("7XnOB") + "question3.ed130377.png" + "?" + Date.now();
-
-},{"bedba9b749047173":"lgJ39"}],"5qq5U":[function(require,module,exports) {
-module.exports = require("39c02f33ef7ad0c0").getBundleURL("7XnOB") + "question4.59e58e5a.png" + "?" + Date.now();
-
-},{"39c02f33ef7ad0c0":"lgJ39"}],"aDYno":[function(require,module,exports) {
-module.exports = require("e0d266457f780ac3").getBundleURL("7XnOB") + "question5.52eaabc1.png" + "?" + Date.now();
-
-},{"e0d266457f780ac3":"lgJ39"}],"ao0Yq":[function(require,module,exports) {
-module.exports = require("2e4e8e74ee46f011").getBundleURL("7XnOB") + "question6.d4fe1e29.png" + "?" + Date.now();
-
-},{"2e4e8e74ee46f011":"lgJ39"}],"4kaAF":[function(require,module,exports) {
+},{}],"4kaAF":[function(require,module,exports) {
 module.exports = require("4320ad47de3727a0").getBundleURL("7XnOB") + "result.c6bf3127.png" + "?" + Date.now();
 
 },{"4320ad47de3727a0":"lgJ39"}],"jSVMY":[function(require,module,exports) {
@@ -2547,17 +2453,20 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "closePromoInfo", ()=>closePromoInfo);
 const closePromoInfo = (info)=>{
-    const yStart = parseInt(window.getComputedStyle(info, null).getPropertyValue("top"));
     let yCurrent;
+    const yStart = parseInt(window.getComputedStyle(info, null).getPropertyValue("top"));
+    console.log(yStart);
     info.addEventListener("touchstart", (e)=>{
         e.preventDefault();
-        yCurrent = +e.targetTouches[0].clientY - parseInt(info.style.top) || 0;
+        yCurrent = +e.targetTouches[0].clientY - (parseInt(window.getComputedStyle(info, null).getPropertyValue("top")) || 0);
+        console.log(yCurrent);
     });
     info.addEventListener("touchmove", (e)=>{
         if (yCurrent !== undefined) {
             e.preventDefault();
             info.style.top = +e.targetTouches[0].clientY - yCurrent + "rem";
         }
+        console.log(info.style.top);
     });
     info.addEventListener("touchend", (e)=>{
         e.preventDefault();
@@ -2638,8 +2547,7 @@ const resultTemplate = (count)=>{
         <p class="quiz__result-text">${generateResultText(count, "subtitle")}</p>
         <p class="quiz__result-description">${generateResultText(count, "text")}<button class="quiz__result-info"></button>
         <div class="quiz__result-promocode">
-          <button class="quiz__result-close">
-          </button>${(0, _data.dataResults).pomocodeText}</div>
+          <div class="quiz__result-close_wrap"><button class="quiz__result-close"></button></div>${(0, _data.dataResults).pomocodeText}</div>
         </p>
       </div>
       <a class="quiz__result-button" 

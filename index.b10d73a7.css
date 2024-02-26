@@ -2187,7 +2187,7 @@ body::-webkit-scrollbar-thumb {
     height: 671rem;
     flex-direction: column;
     margin: 0 auto;
-    padding: 46rem 12rem 50rem;
+    padding: 46rem 12rem 0;
     display: flex;
     position: relative;
   }
@@ -2291,9 +2291,14 @@ body::-webkit-scrollbar-thumb {
     background-color: #0000003d;
     border: none;
     border-radius: 2rem;
-    margin: 8rem auto 12rem;
     transition: background-color .3s;
     display: block;
+  }
+
+  .quiz__result-close_wrap {
+    justify-content: center;
+    padding: 8rem 0 12rem;
+    display: flex;
   }
 }
 
