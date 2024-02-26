@@ -17,4 +17,4 @@ Pet-проект - верстка лендинга со встроенным т�
 ## Screenshot
 
 ![Desktop screenshot](./screenshot/screenshot.png)
-![Desktop screenshot](./screenshot/screenshot.png)
+![Desktop screenshot](./screenshot/screenshot2.png)

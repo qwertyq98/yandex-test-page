@@ -3,7 +3,7 @@ export interface QuestionsDataTypes {
 }
 
 export interface QuestionTypes {
-  image: string
+  image: URL
   questionText: string
   questionAnswers: string[]
   number: number
