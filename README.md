@@ -16,5 +16,5 @@ Pet-проект - верстка лендинга со встроенным т�
 
 ## Screenshot
 
-![Desktop screenshot](https://github.com/qwertyq98/calculator-react/blob/main/screenshot/screenshot.png)
-![Desktop screenshot](https://github.com/qwertyq98/calculator-react/blob/main/screenshot/screenshot.png)
+![Desktop screenshot](./screenshot/screenshot.png)
+![Desktop screenshot](./screenshot/screenshot.png)
