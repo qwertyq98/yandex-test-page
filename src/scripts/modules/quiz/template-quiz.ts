@@ -1,6 +1,6 @@
-import { dataResults } from './data'
+import { dataResults, QuestionTypes } from './data'
 
-const renderAnswers = (answers) =>
+const renderAnswers = (answers: string[]) =>
   answers
     .map(
       (answer) => `
@@ -9,7 +9,7 @@ const renderAnswers = (answers) =>
     )
     .join('')
 
-const generateResultText = (count, field) => {
+const generateResultText = (count: number, field: string) => {
   if (count === 6) {
     return dataResults.highResult[field]
   } else if (count >= 4) {
@@ -19,7 +19,7 @@ const generateResultText = (count, field) => {
   }
 }
 
-export const quizTemplate = (question) => {
+export const quizTemplate = (question: QuestionTypes): string => {
   return `
     <div class="quiz__wrapper">
       <img class="quiz__img" src="${question.image}">
@@ -52,7 +52,7 @@ export const quizTemplate = (question) => {
   `
 }
 
-export const answerTemplate = (question, isRight) => {
+export const answerTemplate = (question: QuestionTypes, isRight: boolean) => {
   return `
     <div class=${
       isRight ? 'quiz__answer-wrapper_green' : 'quiz__answer-wrapper_red'
@@ -72,7 +72,7 @@ export const answerTemplate = (question, isRight) => {
   `
 }
 
-export const resultTemplate = (count) => {
+export const resultTemplate = (count: number) => {
   return `
   <div class="quiz__result-wrapper">
     <img class="quiz__result-img" src="${dataResults.image}">

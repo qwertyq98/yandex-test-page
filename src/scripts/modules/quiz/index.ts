@@ -55,6 +55,7 @@ const showPromoHandler = () => {
   }
   indexOfQuestion = 0
   result = 0
+  document?.querySelector('.quiz__result-wrapper')?.remove()
   document?.querySelector('.quiz__wrapper')?.remove()
   quizCardsTemplates = createQuizCardsTemplates(DataQuestions)
   currentQuestionData = DataQuestions[indexOfQuestion]
@@ -74,7 +75,7 @@ const replaceElement = (newComponent, oldComponent) => {
   const newElement = newComponent
   const oldElement = oldComponent
   const buttons = newComponent?.querySelectorAll('.quiz__answer')
-  const parent = oldElement.parentElement
+  const parent = oldElement?.parentElement
   const checkAnswer = currentQuestionTemplate.querySelector('.quiz__check')
 
   parent?.replaceChild(newElement, oldElement)
