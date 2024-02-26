@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"e7zDJ":[function(require,module,exports) {
+})({"loNOH":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -150,7 +150,7 @@ var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 module.bundle.HMR_BUNDLE_ID = "5cb08447482d1c68";
 "use strict";
-/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
+/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
   HMRMessage,
@@ -214,60 +214,43 @@ function Module(moduleName) {
 }
 module.bundle.Module = Module;
 module.bundle.hotData = {};
-var checkedAssets /*: {|[string]: boolean|} */ , assetsToDispose /*: Array<[ParcelRequire, string]> */ , assetsToAccept /*: Array<[ParcelRequire, string]> */ ;
+var checkedAssets, assetsToDispose, assetsToAccept /*: Array<[ParcelRequire, string]> */ ;
 function getHostname() {
     return HMR_HOST || (location.protocol.indexOf("http") === 0 ? location.hostname : "localhost");
 }
 function getPort() {
     return HMR_PORT || location.port;
-}
-// eslint-disable-next-line no-redeclare
+} // eslint-disable-next-line no-redeclare
 var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
     var hostname = getHostname();
     var port = getPort();
-    var protocol = HMR_SECURE || location.protocol == "https:" && ![
-        "localhost",
-        "127.0.0.1",
-        "0.0.0.0"
-    ].includes(hostname) ? "wss" : "ws";
-    var ws;
-    try {
-        ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
-    } catch (err) {
-        if (err.message) console.error(err.message);
-        ws = {};
-    }
-    // Web extension context
-    var extCtx = typeof browser === "undefined" ? typeof chrome === "undefined" ? null : chrome : browser;
-    // Safari doesn't support sourceURL in error stacks.
+    var protocol = HMR_SECURE || location.protocol == "https:" && !/localhost|127.0.0.1|0.0.0.0/.test(hostname) ? "wss" : "ws";
+    var ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/"); // Web extension context
+    var extCtx = typeof chrome === "undefined" ? typeof browser === "undefined" ? null : browser : chrome; // Safari doesn't support sourceURL in error stacks.
     // eval may also be disabled via CSP, so do a quick check.
     var supportsSourceURL = false;
     try {
         (0, eval)('throw new Error("test"); //# sourceURL=test.js');
     } catch (err) {
         supportsSourceURL = err.stack.includes("test.js");
-    }
-    // $FlowFixMe
-    ws.onmessage = async function(event /*: {data: string, ...} */ ) {
+    } // $FlowFixMe
+    ws.onmessage = async function(event) {
         checkedAssets = {} /*: {|[string]: boolean|} */ ;
         assetsToAccept = [];
         assetsToDispose = [];
-        var data /*: HMRMessage */  = JSON.parse(event.data);
+        var data = JSON.parse(event.data);
         if (data.type === "update") {
             // Remove error overlay if there is one
             if (typeof document !== "undefined") removeErrorOverlay();
-            let assets = data.assets.filter((asset)=>asset.envHash === HMR_ENV_HASH);
-            // Handle HMR Update
+            let assets = data.assets.filter((asset)=>asset.envHash === HMR_ENV_HASH); // Handle HMR Update
             let handled = assets.every((asset)=>{
                 return asset.type === "css" || asset.type === "js" && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
             });
             if (handled) {
-                console.clear();
-                // Dispatch custom event so other runtimes (e.g React Refresh) are aware.
+                console.clear(); // Dispatch custom event so other runtimes (e.g React Refresh) are aware.
                 if (typeof window !== "undefined" && typeof CustomEvent !== "undefined") window.dispatchEvent(new CustomEvent("parcelhmraccept"));
-                await hmrApplyUpdates(assets);
-                // Dispose all old assets.
+                await hmrApplyUpdates(assets); // Dispose all old assets.
                 let processedAssets = {} /*: {|[string]: boolean|} */ ;
                 for(let i = 0; i < assetsToDispose.length; i++){
                     let id = assetsToDispose[i][1];
@@ -275,8 +258,7 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
                         hmrDispose(assetsToDispose[i][0], id);
                         processedAssets[id] = true;
                     }
-                }
-                // Run accept callbacks. This will also re-execute other disposed assets in topological order.
+                } // Run accept callbacks. This will also re-execute other disposed assets in topological order.
                 processedAssets = {};
                 for(let i = 0; i < assetsToAccept.length; i++){
                     let id = assetsToAccept[i][1];
@@ -296,14 +278,13 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
             if (typeof document !== "undefined") {
                 // Render the fancy html overlay
                 removeErrorOverlay();
-                var overlay = createErrorOverlay(data.diagnostics.html);
-                // $FlowFixMe
+                var overlay = createErrorOverlay(data.diagnostics.html); // $FlowFixMe
                 document.body.appendChild(overlay);
             }
         }
     };
     ws.onerror = function(e) {
-        if (e.message) console.error(e.message);
+        console.error(e.message);
     };
     ws.onclose = function() {
         console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
@@ -313,7 +294,7 @@ function removeErrorOverlay() {
     var overlay = document.getElementById(OVERLAY_ID);
     if (overlay) {
         overlay.remove();
-        console.log("[parcel] \u2728 Error resolved");
+        console.log("[parcel] ✨ Error resolved");
     }
 }
 function createErrorOverlay(diagnostics) {
@@ -329,13 +310,13 @@ ${frame.code}`;
         errorHTML += `
       <div>
         <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
-          \u{1F6A8} ${diagnostic.message}
+          🚨 ${diagnostic.message}
         </div>
         <pre>${stack}</pre>
         <div>
           ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + "</div>").join("")}
         </div>
-        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
+        ${diagnostic.documentation ? `<div>📝 <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
       </div>
     `;
     }
@@ -363,16 +344,12 @@ function getParents(bundle, id) /*: Array<[ParcelRequire, string]> */ {
     return parents;
 }
 function updateLink(link) {
-    var href = link.getAttribute("href");
-    if (!href) return;
     var newLink = link.cloneNode();
     newLink.onload = function() {
         if (link.parentNode !== null) // $FlowFixMe
         link.parentNode.removeChild(link);
     };
-    newLink.setAttribute("href", // $FlowFixMe
-    href.split("?")[0] + "?" + Date.now());
-    // $FlowFixMe
+    newLink.setAttribute("href", link.getAttribute("href").split("?")[0] + "?" + Date.now()); // $FlowFixMe
     link.parentNode.insertBefore(newLink, link.nextSibling);
 }
 var cssTimeout = null;
@@ -382,7 +359,7 @@ function reloadCSS() {
         var links = document.querySelectorAll('link[rel="stylesheet"]');
         for(var i = 0; i < links.length; i++){
             // $FlowFixMe[incompatible-type]
-            var href /*: string */  = links[i].getAttribute("href");
+            var href = links[i].getAttribute("href");
             var hostname = getHostname();
             var servedFromHMRServer = hostname === "localhost" ? new RegExp("^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):" + getPort()).test(href) : href.indexOf(hostname + ":" + getPort());
             var absolute = /^https?:\/\//i.test(href) && href.indexOf(location.origin) !== 0 && !servedFromHMRServer;
@@ -431,10 +408,15 @@ async function hmrApplyUpdates(assets) {
             let promises = assets.map((asset)=>{
                 var _hmrDownload;
                 return (_hmrDownload = hmrDownload(asset)) === null || _hmrDownload === void 0 ? void 0 : _hmrDownload.catch((err)=>{
-                    // Web extension fix
-                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
-                        extCtx.runtime.reload();
-                        return;
+                    // Web extension bugfix for Chromium
+                    // https://bugs.chromium.org/p/chromium/issues/detail?id=1255412#c12
+                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3) {
+                        if (typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
+                            extCtx.runtime.reload();
+                            return;
+                        }
+                        asset.url = extCtx.runtime.getURL("/__parcel_hmr_proxy__?url=" + encodeURIComponent(asset.url + "?t=" + Date.now()));
+                        return hmrDownload(asset);
                     }
                     throw err;
                 });
@@ -454,7 +436,7 @@ async function hmrApplyUpdates(assets) {
         });
     }
 }
-function hmrApply(bundle /*: ParcelRequire */ , asset /*:  HMRAsset */ ) {
+function hmrApply(bundle, asset) {
     var modules = bundle.modules;
     if (!modules) return;
     if (asset.type === "css") reloadCSS();
@@ -474,7 +456,7 @@ function hmrApply(bundle /*: ParcelRequire */ , asset /*:  HMRAsset */ ) {
             if (supportsSourceURL) // Global eval. We would use `new Function` here but browser
             // support for source maps is better with eval.
             (0, eval)(asset.output);
-            // $FlowFixMe
+             // $FlowFixMe
             let fn = global.parcelHotUpdate[asset.id];
             modules[asset.id] = [
                 fn,
@@ -493,19 +475,17 @@ function hmrDelete(bundle, id) {
         for(let dep in deps){
             let parents = getParents(module.bundle.root, deps[dep]);
             if (parents.length === 1) orphans.push(deps[dep]);
-        }
-        // Delete the module. This must be done before deleting dependencies in case of circular dependencies.
+        } // Delete the module. This must be done before deleting dependencies in case of circular dependencies.
         delete modules[id];
-        delete bundle.cache[id];
-        // Now delete the orphans.
+        delete bundle.cache[id]; // Now delete the orphans.
         orphans.forEach((id)=>{
             hmrDelete(module.bundle.root, id);
         });
     } else if (bundle.parent) hmrDelete(bundle.parent, id);
 }
-function hmrAcceptCheck(bundle /*: ParcelRequire */ , id /*: string */ , depsByBundle /*: ?{ [string]: { [string]: string } }*/ ) {
+function hmrAcceptCheck(bundle, id, depsByBundle) {
     if (hmrAcceptCheckOne(bundle, id, depsByBundle)) return true;
-    // Traverse parents breadth first. All possible ancestries must accept the HMR update, or we'll reload.
+     // Traverse parents breadth first. All possible ancestries must accept the HMR update, or we'll reload.
     let parents = getParents(module.bundle.root, id);
     let accepted = false;
     while(parents.length > 0){
@@ -526,7 +506,7 @@ function hmrAcceptCheck(bundle /*: ParcelRequire */ , id /*: string */ , depsByB
     }
     return accepted;
 }
-function hmrAcceptCheckOne(bundle /*: ParcelRequire */ , id /*: string */ , depsByBundle /*: ?{ [string]: { [string]: string } }*/ ) {
+function hmrAcceptCheckOne(bundle, id, depsByBundle) {
     var modules = bundle.modules;
     if (!modules) return;
     if (depsByBundle && !depsByBundle[bundle.HMR_BUNDLE_ID]) {
@@ -550,7 +530,7 @@ function hmrAcceptCheckOne(bundle /*: ParcelRequire */ , id /*: string */ , deps
         return true;
     }
 }
-function hmrDispose(bundle /*: ParcelRequire */ , id /*: string */ ) {
+function hmrDispose(bundle, id) {
     var cached = bundle.cache[id];
     bundle.hotData[id] = {};
     if (cached && cached.hot) cached.hot.data = bundle.hotData[id];
@@ -559,10 +539,9 @@ function hmrDispose(bundle /*: ParcelRequire */ , id /*: string */ ) {
     });
     delete bundle.cache[id];
 }
-function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
+function hmrAccept(bundle, id) {
     // Execute the module.
-    bundle(id);
-    // Run the accept callbacks in the new version of the module.
+    bundle(id); // Run the accept callbacks in the new version of the module.
     var cached = bundle.cache[id];
     if (cached && cached.hot && cached.hot._acceptCallbacks.length) cached.hot._acceptCallbacks.forEach(function(cb) {
         var assetsToAlsoAccept = cb(function() {
@@ -571,8 +550,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
         if (assetsToAlsoAccept && assetsToAccept.length) {
             assetsToAlsoAccept.forEach(function(a) {
                 hmrDispose(a[0], a[1]);
-            });
-            // $FlowFixMe[method-unbinding]
+            }); // $FlowFixMe[method-unbinding]
             assetsToAccept.push.apply(assetsToAccept, assetsToAlsoAccept);
         }
     });
@@ -877,7 +855,7 @@ exports.defineInteropFlag = function(a) {
 };
 exports.exportAll = function(source, dest) {
     Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
         Object.defineProperty(dest, key, {
             enumerable: true,
             get: function() {
@@ -926,8 +904,8 @@ window.addEventListener("load", ()=>{
 
 },{"animejs":"jokr5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jokr5":[function(require,module,exports) {
 /*
- * anime.js v3.2.2
- * (c) 2023 Julian Garnier
+ * anime.js v3.2.1
+ * (c) 2020 Julian Garnier
  * Released under the MIT license
  * animejs.com
  */ // Defaults
@@ -1165,11 +1143,6 @@ var penner = function() {
                 return 1 - Math.cos(t * Math.PI / 2);
             };
         },
-        Expo: function() {
-            return function(t) {
-                return t ? Math.pow(2, 10 * t - 10) : 0;
-            };
-        },
         Circ: function() {
             return function(t) {
                 return 1 - Math.sqrt(1 - t * t);
@@ -1201,7 +1174,8 @@ var penner = function() {
         "Quad",
         "Cubic",
         "Quart",
-        "Quint"
+        "Quint",
+        "Expo"
     ];
     baseEasings.forEach(function(name, i) {
         functionEasings[name] = function() {
@@ -2281,7 +2255,6 @@ const showPromoHandler = ()=>{
     } else replaceElement(currentPromoElement, document.querySelector(".promo-mobile"));
     indexOfQuestion = 0;
     result = 0;
-    document?.querySelector(".quiz__result-wrapper")?.remove();
     document?.querySelector(".quiz__wrapper")?.remove();
     quizCardsTemplates = createQuizCardsTemplates((0, _data.DataQuestions));
     currentQuestionData = (0, _data.DataQuestions)[indexOfQuestion];
@@ -2298,7 +2271,7 @@ const replaceElement = (newComponent, oldComponent)=>{
     const newElement = newComponent;
     const oldElement = oldComponent;
     const buttons = newComponent?.querySelectorAll(".quiz__answer");
-    const parent = oldElement?.parentElement;
+    const parent = oldElement.parentElement;
     const checkAnswer = currentQuestionTemplate.querySelector(".quiz__check");
     parent?.replaceChild(newElement, oldElement);
     if (!isMobileMode) buttons.forEach((button)=>button.addEventListener("click", showAnswerHandler));
@@ -2346,7 +2319,7 @@ const showAnswerHandler = (evt)=>{
 };
 const unlockingButtonsHandler = (evt)=>{
     const checkAnswer = currentQuestionTemplate.querySelector(".quiz__check");
-    if (evt.target.innerHTML !== "" && evt.target.innerHTML !== "\u041F\u0440\u043E\u0432\u0435\u0440\u0438\u0442\u044C") {
+    if (evt.target.innerHTML !== "" && evt.target.innerHTML !== "Проверить") {
         prevValue = evt.target.innerHTML;
         checkAnswer.style["pointer-events"] = "all";
         checkAnswer.style["background-color"] = "#077BED";
@@ -2401,123 +2374,123 @@ parcelHelpers.export(exports, "DataQuestions", ()=>DataQuestions);
 parcelHelpers.export(exports, "dataResults", ()=>dataResults);
 const DataQuestions = [
     {
-        image: new URL(require("996b966c5238afa3")),
-        questionText: "\u041A\u0430\u043A\u043E\u0432\u0430 \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E\u0441\u0442\u044C, \u0447\u0442\u043E \u0432\u044B&nbsp;\u0432\u0441\u0442\u0430\u0432\u0438\u0442\u0435 \u0432&nbsp;\u043F\u0443\u043B\u044C\u0442 \u0431\u0440\u0430\u043A\u043E\u0432\u0430\u043D\u043D\u0443\u044E \u0431\u0430\u0442\u0430\u0440\u0435\u0439\u043A\u0443 \u0438&nbsp;\u043D\u0435&nbsp;\u0432\u043A\u043B\u044E\u0447\u0438\u0442\u0435 \u0444\u0438\u043B\u044C\u043C \u043D\u0430&nbsp;\u0431\u043E\u043B\u044C\u0448\u043E\u043C \u044D\u043A\u0440\u0430\u043D\u0435?",
+        image: new URL(require("cfc6e04b99b6767c")),
+        questionText: "Какова вероятность, что вы&nbsp;вставите в&nbsp;пульт бракованную батарейку и&nbsp;не&nbsp;включите фильм на&nbsp;большом экране?",
         questionAnswers: [
-            "1 \u0438\u0437 100",
-            "6 \u0438\u0437 100",
-            "35 \u0438\u0437 100"
+            "1 из 100",
+            "6 из 100",
+            "35 из 100"
         ],
         number: 1,
-        rightAnswer: "6 \u0438\u0437 100",
+        rightAnswer: "6 из 100",
         answerText: {
-            right: "\u0414\u0430, \u0442\u0430\u043A\u043E\u0439 \u0448\u0430\u043D\u0441 \u2014 6 \u0438\u0437 100",
-            wrong: "\u041D\u0435 \u0441\u043E\u0432\u0441\u0435\u043C. \u0422\u0430\u043A\u043E\u0439&nbsp;\u0448\u0430\u043D\u0441&nbsp;\u2014&nbsp;6&nbsp;\u0438\u0437&nbsp;100",
-            text: "\u041D\u0435\u043C\u043D\u043E\u0433\u043E, \u0442\u0430\u043A \u0447\u0442\u043E \u0432\u0430\u0448 \u043A\u0438\u043D\u043E\u0432\u0435\u0447\u0435\u0440, \u0441\u043A\u043E\u0440\u0435\u0435 \u0432\u0441\u0435\u0433\u043E, \u0443\u0434\u0430\u0441\u0442\u0441\u044F. \u0415\u0441\u043B\u0438, \u043A\u043E\u043D\u0435\u0447\u043D\u043E, \u0443&nbsp;\u0441\u043E\u0441\u0435\u0434\u0435\u0439 \u043D\u0435&nbsp;\u043F\u0440\u043E\u0440\u0432\u0451\u0442 \u0442\u0440\u0443\u0431\u0443 \u0432&nbsp;\u044D\u0442\u043E \u0432\u0440\u0435\u043C\u044F. \u041F\u043E\u0442\u043E\u043F&nbsp;&mdash; \u043F\u0440\u0438\u0447\u0438\u043D\u0430 \u043F\u043E\u0440\u0447\u0438 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430 \u0432&nbsp;7&nbsp;\u0441\u043B\u0443\u0447\u0430\u044F\u0445 \u0438\u0437&nbsp;100. \u0421\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0444\u0438\u043B\u044C\u043C\u044B \u0441\u0442\u0430\u043D\u0435\u0442 \u0441\u043F\u043E\u043A\u043E\u0439\u043D\u0435\u0435, \u0435\u0441\u043B\u0438 \u0437\u0430\u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u0442\u044C \u0440\u0438\u0441\u043A\u0438 \u043F\u043E&nbsp;\u0438\u043F\u043E\u0442\u0435\u043A\u0435 \u0432&nbsp;\u0421\u0442\u0440\u0430\u0445\u043E\u0432\u043E\u043C \u0414\u043E\u043C\u0435 \u0412\u0421\u041A"
+            right: "Да, такой шанс — 6 из 100",
+            wrong: "Не совсем. Такой&nbsp;шанс&nbsp;—&nbsp;6&nbsp;из&nbsp;100",
+            text: "Немного, так что ваш киновечер, скорее всего, удастся. Если, конечно, у&nbsp;соседей не&nbsp;прорвёт трубу в&nbsp;это время. Потоп&nbsp;&mdash; причина порчи имущества в&nbsp;7&nbsp;случаях из&nbsp;100. Смотреть фильмы станет спокойнее, если застраховать риски по&nbsp;ипотеке в&nbsp;Страховом Доме ВСК"
         }
     },
     {
-        image: new URL(require("d040fd4aba32dfaf")),
-        questionText: "\u041A\u0430\u043A\u043E\u0432\u0430 \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E\u0441\u0442\u044C, \u0447\u0442\u043E \u0432\u044B&nbsp;\u0441\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u0435 \u0431\u0440\u0430\u043A \u0438&nbsp;\u043F\u0440\u043E\u0436\u0438\u0432\u0451\u0442\u0435 \u0432\u043C\u0435\u0441\u0442\u0435 \u0435\u0449\u0451 \u043E\u0434\u0438\u043D \u043F\u0440\u0435\u043A\u0440\u0430\u0441\u043D\u044B\u0439 \u0433\u043E\u0434?",
+        image: new URL(require("fd54acab0ce22e0")),
+        questionText: "Какова вероятность, что вы&nbsp;сохраните брак и&nbsp;проживёте вместе ещё один прекрасный год?",
         questionAnswers: [
-            "3 \u043A 10",
-            "8 \u043A 10",
-            "1 \u043A 20"
+            "3 к 10",
+            "8 к 10",
+            "1 к 20"
         ],
         number: 2,
-        rightAnswer: "3 \u043A 10",
+        rightAnswer: "3 к 10",
         answerText: {
-            right: "\u0412\u0435\u0440\u043D\u043E",
-            wrong: "\u041D\u0435\u0432\u0435\u0440\u043D\u043E",
-            text: "\u041F\u043E&nbsp;\u043E\u0444\u0438\u0446\u0438\u0430\u043B\u044C\u043D\u043E\u0439 \u0441\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043A\u0435, \u0432&nbsp;2022 \u0433\u043E\u0434\u0443 \u043D\u0430&nbsp;10&nbsp;\u0431\u0440\u0430\u043A\u043E\u0432 \u043F\u0440\u0438\u0448\u043B\u043E\u0441\u044C 7&nbsp;\u0440\u0430\u0437\u0432\u043E\u0434\u043E\u0432. \u041E\u0434\u043D\u0430 \u0438\u0437&nbsp;\u043F\u0440\u0438\u0447\u0438\u043D&nbsp;&mdash; \u0431\u044B\u0442\u043E\u0432\u044B\u0435 \u043F\u0440\u043E\u0431\u043B\u0435\u043C\u044B: \u0442\u043E&nbsp;\u0441\u043E\u0441\u0435\u0434\u0438 \u0437\u0430\u043B\u044C\u044E\u0442, \u0442\u043E&nbsp;\u0442\u0440\u0443\u0431\u0430 \u043B\u043E\u043F\u043D\u0435\u0442, \u0430&nbsp;\u0431\u044B\u0432\u0430\u0435\u0442 \u0438&nbsp;\u043F\u043E\u043B\u043D\u0430\u044F \u043F\u043E\u0440\u0447\u0430 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430... \u0425\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u044B \u0441\u0443\u043F\u0440\u0443\u0433\u0438, \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E, \u043D\u0435&nbsp;\u0438\u0441\u043F\u0440\u0430\u0432\u044F\u0442, \u043D\u043E&nbsp;\u043F\u043E\u043C\u043E\u0447\u044C \u0441\u0435\u0431\u0435 \u043F\u0440\u043E\u0449\u0435 \u0440\u0435\u0448\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441\u044B&nbsp;&mdash; \u0441\u043A\u043E\u0440\u0435\u0435 \u0432\u0441\u0435\u0433\u043E, \u043C\u043E\u0433\u0443\u0442. \u041D\u0430\u043F\u0440\u0438\u043C\u0435\u0440, \u0437\u0430\u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u0442\u044C \u0440\u0438\u0441\u043A\u0438 \u043F\u043E&nbsp;\u0441\u043E\u0432\u043C\u0435\u0441\u0442\u043D\u043E\u0439 \u0438\u043F\u043E\u0442\u0435\u0447\u043D\u043E\u0439 \u043A\u0432\u0430\u0440\u0442\u0438\u0440\u0435 \u0432&nbsp;\u0421\u0442\u0440\u0430\u0445\u043E\u0432\u043E\u043C \u0434\u043E\u043C\u0435 \u0412\u0421\u041A \u0438&nbsp;\u043D\u0435&nbsp;\u0432\u044B\u043F\u043B\u0430\u0447\u0438\u0432\u0430\u0442\u044C \u0431\u0430\u043D\u043A\u0443 \u043E\u0441\u0442\u0430\u0442\u043E\u043A \u0437\u0430\u0434\u043E\u043B\u0436\u0435\u043D\u043D\u043E\u0441\u0442\u0438 \u043F\u043E&nbsp;\u0438\u043F\u043E\u0442\u0435\u043A\u0435 \u0432&nbsp;\u0441\u043B\u0443\u0447\u0430\u0435 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u0441\u0435\u0440\u044C\u0451\u0437\u043D\u043E\u0439 \u0431\u044B\u0442\u043E\u0432\u043E\u0439 \u0430\u0432\u0430\u0440\u0438\u0438."
+            right: "Верно",
+            wrong: "Неверно",
+            text: "По&nbsp;официальной статистике, в&nbsp;2022 году на&nbsp;10&nbsp;браков пришлось 7&nbsp;разводов. Одна из&nbsp;причин&nbsp;&mdash; бытовые проблемы: то&nbsp;соседи зальют, то&nbsp;труба лопнет, а&nbsp;бывает и&nbsp;полная порча имущества... Характеры супруги, вероятно, не&nbsp;исправят, но&nbsp;помочь себе проще решать вопросы&nbsp;&mdash; скорее всего, могут. Например, застраховать риски по&nbsp;совместной ипотечной квартире в&nbsp;Страховом доме ВСК и&nbsp;не&nbsp;выплачивать банку остаток задолженности по&nbsp;ипотеке в&nbsp;случае действительно серьёзной бытовой аварии."
         }
     },
     {
-        image: new URL(require("8db686e3e50d102b")),
-        questionText: "\u0410&nbsp;\u043A\u0430\u043A\u043E\u0432 \u0448\u0430\u043D\u0441, \u0447\u0442\u043E \u0432\u0430\u0441 \u043E\u0431\u0432\u043E\u0440\u0443\u044E\u0442 \u043D\u0430&nbsp;\u0443\u043B\u0438\u0446\u0435?",
+        image: new URL(require("63dec6cacfaa7b9a")),
+        questionText: "А&nbsp;каков шанс, что вас обворуют на&nbsp;улице?",
         questionAnswers: [
-            "1 \u0438\u0437 1274",
-            "1 \u0438\u0437 20 054",
-            "1 \u0438\u0437 8687"
+            "1 из 1274",
+            "1 из 20 054",
+            "1 из 8687"
         ],
         number: 3,
-        rightAnswer: "1 \u0438\u0437 1274",
+        rightAnswer: "1 из 1274",
         answerText: {
-            right: "\u0414\u0430, \u044D\u0442\u043E \u0432\u0435\u0440\u043D\u043E",
-            wrong: "\u041D\u0435\u0432\u0435\u0440\u043D\u043E",
-            text: "\u0413\u043E\u0440\u043E\u0434 \u0437\u0430\u0441\u044B\u043F\u0430\u0435\u0442&nbsp;&mdash; \u043F\u0440\u043E\u0441\u044B\u043F\u0430\u044E\u0442\u0441\u044F \u0432\u043E\u0440\u044B. \u0422\u0430\u043A\u043E\u0439 \u0448\u0430\u043D\u0441&nbsp;&mdash; 1&nbsp;\u0438\u0437&nbsp;1274. \u041F\u043E\u043C\u0438\u043C\u043E \u0440\u0438\u0441\u043A\u0430 \u043F\u043E\u043F\u0430\u0441\u0442\u044C\u0441\u044F \u043A\u0430\u0440\u043C\u0430\u043D\u043D\u0438\u043A\u0430\u043C \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442 \u043A\u0443\u0434\u0430 \u0431\u043E\u043B\u044C\u0448\u0430\u044F \u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u044C&nbsp;&mdash; \u043D\u0430\u043F\u0440\u0438\u043C\u0435\u0440, \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0441\u0442\u0438 \u043A\u0432\u0430\u0440\u0442\u0438\u0440\u0443 \u0441&nbsp;\u043E\u0431\u0440\u0435\u043C\u0435\u043D\u0435\u043D\u0438\u0435\u043C. \u0422\u0430\u043A \u043C\u043E\u0436\u043D\u043E \u043E\u0441\u0442\u0430\u0442\u044C\u0441\u044F \u0438&nbsp;\u0431\u0435\u0437 \u0436\u0438\u043B\u043F\u043B\u043E\u0449\u0430\u0434\u0438, \u0438&nbsp;\u0431\u0435\u0437 \u0434\u0435\u043D\u0435\u0433. \u0421\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0442\u0438\u0442\u0443\u043B\u0430 \u043E\u0442&nbsp;\u0421\u0442\u0440\u0430\u0445\u043E\u0432\u043E\u0433\u043E \u0434\u043E\u043C\u0430 \u0412\u0421\u041A \u0437\u0430\u0449\u0438\u0449\u0430\u0435\u0442 \u0441\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u0438\u043A\u0430 \u0438\u043F\u043E\u0442\u0435\u0447\u043D\u043E\u0439 \u043A\u0432\u0430\u0440\u0442\u0438\u0440\u044B \u0438&nbsp;\u0432&nbsp;\u043F\u043E\u0434\u043E\u0431\u043D\u044B\u0445 \u0441\u0438\u0442\u0443\u0430\u0446\u0438\u044F\u0445."
+            right: "Да, это верно",
+            wrong: "Неверно",
+            text: "Город засыпает&nbsp;&mdash; просыпаются воры. Такой шанс&nbsp;&mdash; 1&nbsp;из&nbsp;1274. Помимо риска попасться карманникам существует куда большая опасность&nbsp;&mdash; например, приобрести квартиру с&nbsp;обременением. Так можно остаться и&nbsp;без жилплощади, и&nbsp;без денег. Страхование титула от&nbsp;Страхового дома ВСК защищает собственника ипотечной квартиры и&nbsp;в&nbsp;подобных ситуациях."
         }
     },
     {
-        image: new URL(require("cc09c474b0048bea")),
-        questionText: "\u041A\u0430\u043A\u043E\u0432\u0430 \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E\u0441\u0442\u044C, \u0447\u0442\u043E \u0432\u044B&nbsp;\u043F\u0435\u0440\u0435\u0432\u0435\u0434\u0451\u0442\u0435 \u0432\u0441\u0435 \u043D\u0430\u043A\u043E\u043F\u043B\u0435\u043D\u0438\u044F &laquo;\u0441\u043E\u0442\u0440\u0443\u0434\u043D\u0438\u043A\u0443 \u0431\u0430\u043D\u043A\u0430&raquo;?",
+        image: new URL(require("ba3a67789d5a7110")),
+        questionText: "Какова вероятность, что вы&nbsp;переведёте все накопления &laquo;сотруднику банка&raquo;?",
         questionAnswers: [
-            "1 \u0438\u0437 580 000",
-            "1 \u0438\u0437 20 000",
-            "1 \u0438\u0437 1"
+            "1 из 580 000",
+            "1 из 20 000",
+            "1 из 1"
         ],
         number: 4,
-        rightAnswer: "1 \u0438\u0437 20 000",
+        rightAnswer: "1 из 20 000",
         answerText: {
-            right: "\u0412\u0435\u0440\u043D\u043E",
-            wrong: "\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u0422\u0430\u043A\u043E\u0439&nbsp;\u0448\u0430\u043D\u0441&nbsp;\u2014&nbsp;1&nbsp;\u043A&nbsp;20&nbsp;000",
-            text: "\u0422\u0430\u043A\u043E\u0439 \u0448\u0430\u043D\u0441&nbsp;&mdash; 1&nbsp;\u043A 20&nbsp;000. \u0413\u043E\u0440\u0430\u0437\u0434\u043E \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u0435\u0435 \u043F\u0440\u0438\u043E\u0431\u0440\u0435\u0441\u0442\u0438 \u043A\u0432\u0430\u0440\u0442\u0438\u0440\u0443 \u043D\u0430&nbsp;\u0432\u0442\u043E\u0440\u0438\u0447\u043D\u043E\u043C \u0440\u044B\u043D\u043A\u0435 \u0443&nbsp;\u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438, \u043D\u0430\u0445\u043E\u0434\u044F\u0449\u0435\u0439\u0441\u044F \u043D\u0430&nbsp;\u0441\u0442\u0430\u0434\u0438\u0438 \u0431\u0430\u043D\u043A\u0440\u043E\u0442\u0441\u0442\u0432\u0430&nbsp;&mdash; \u043A\u043E\u0433\u0434\u0430 \u0441\u0434\u0435\u043B\u043A\u0438 \u0441&nbsp;\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u043E\u043C \u043C\u043E\u0433\u0443\u0442 \u0431\u044B\u0442\u044C \u043E\u0441\u043F\u043E\u0440\u0435\u043D\u044B \u0432&nbsp;\u0441\u0443\u0434\u0435\u0431\u043D\u043E\u043C \u043F\u043E\u0440\u044F\u0434\u043A\u0435. \u0415\u0441\u043B\u0438 \u0441\u0434\u0435\u043B\u043A\u0443 \u043F\u0440\u0438\u0437\u043D\u0430\u044E\u0442 \u043D\u0435\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0439, \u0421\u0442\u0440\u0430\u0445\u043E\u0432\u043E\u0439 \u0434\u043E\u043C \u0412\u0421\u041A \u0432\u044B\u043F\u043B\u0430\u0442\u0438\u0442 \u0431\u0430\u043D\u043A\u0443 \u043E\u0441\u0442\u0430\u0442\u043E\u043A \u0437\u0430\u0434\u043E\u043B\u0436\u0435\u043D\u043D\u043E\u0441\u0442\u0438 \u043F\u043E&nbsp;\u0438\u043F\u043E\u0442\u0435\u043A\u0435."
+            right: "Верно",
+            wrong: "Неверно. Такой&nbsp;шанс&nbsp;—&nbsp;1&nbsp;к&nbsp;20&nbsp;000",
+            text: "Такой шанс&nbsp;&mdash; 1&nbsp;к 20&nbsp;000. Гораздо вероятнее приобрести квартиру на&nbsp;вторичном рынке у&nbsp;компании, находящейся на&nbsp;стадии банкротства&nbsp;&mdash; когда сделки с&nbsp;имуществом могут быть оспорены в&nbsp;судебном порядке. Если сделку признают недействительной, Страховой дом ВСК выплатит банку остаток задолженности по&nbsp;ипотеке."
         }
     },
     {
-        image: new URL(require("aa6c4e807b702494")),
-        questionText: "\u041A\u0430\u043A\u043E\u0432 \u0448\u0430\u043D\u0441, \u0447\u0442\u043E \u0432\u0430\u0448\u0430 \u043F\u043E\u0441\u044B\u043B\u043A\u0430 \u043D\u0435&nbsp;\u0434\u043E\u0435\u0434\u0435\u0442 \u0434\u043E&nbsp;\u0430\u0434\u0440\u0435\u0441\u0430\u0442\u0430, \u0435\u0441\u043B\u0438 \u0432\u044B&nbsp;\u043E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u0435 \u0435\u0451&nbsp;\u0447\u0435\u0440\u0435\u0437 \u0433\u0440\u0443\u0437\u043E\u0432\u0443\u044E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044E?",
+        image: new URL(require("526cea192e9a2a42")),
+        questionText: "Каков шанс, что ваша посылка не&nbsp;доедет до&nbsp;адресата, если вы&nbsp;отправите её&nbsp;через грузовую компанию?",
         questionAnswers: [
-            "1 \u0438\u0437 96 000",
-            "1 \u0438\u0437 15 000",
-            "1 \u0438\u0437 7000"
+            "1 из 96 000",
+            "1 из 15 000",
+            "1 из 7000"
         ],
         number: 5,
-        rightAnswer: "1 \u0438\u0437 96 000",
+        rightAnswer: "1 из 96 000",
         answerText: {
-            right: "\u0412\u0435\u0440\u043D\u043E. \u0428\u0430\u043D\u0441 \u2014 1 \u0438\u0437 96 000",
-            wrong: "\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u0428\u0430\u043D\u0441 \u2014 1 \u0438\u0437 96 000",
-            text: "\u0415\u0441\u043B\u0438 \u0447\u0430\u0441\u0442\u043E \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u044F\u0435\u0442\u0435 \u0433\u0440\u0443\u0437\u044B, \u0442\u0430\u043A\u043E\u0435 \u043C\u043E\u0436\u0435\u0442 \u043F\u0440\u043E\u0438\u0437\u043E\u0439\u0442\u0438. \u041D\u043E&nbsp;\u043F\u043E\u0441\u044B\u043B\u043A\u0438 \u0442\u0435\u0440\u044F\u044E\u0442 \u0440\u0435\u0436\u0435, \u0447\u0435\u043C \u0431\u0435\u0437\u0432\u043E\u0437\u0432\u0440\u0430\u0442\u043D\u043E \u043F\u043E\u0440\u0442\u0438\u0442\u0441\u044F \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u043E \u0432&nbsp;\u0438\u043F\u043E\u0442\u0435\u0447\u043D\u043E\u0439 \u043A\u0432\u0430\u0440\u0442\u0438\u0440\u0435&nbsp;&mdash; \u043D\u0430\u043F\u0440\u0438\u043C\u0435\u0440, \u043F\u0440\u0438 \u043F\u0440\u043E\u0440\u044B\u0432\u0435 \u043A\u0430\u043D\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u0438. \u0416\u0438\u0442\u044C \u0441\u043F\u043E\u043A\u043E\u0439\u043D\u0435\u0435 \u043F\u0440\u043E\u0441\u0442\u043E&nbsp;&mdash; \u043E\u0444\u043E\u0440\u043C\u0438\u0442\u0435 \u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430 \u0437\u0430&nbsp;5&nbsp;\u043C\u0438\u043D\u0443\u0442 \u043E\u043D\u043B\u0430\u0439\u043D \u0432&nbsp;\u0421\u0442\u0440\u0430\u0445\u043E\u0432\u043E\u043C \u0434\u043E\u043C\u0435 \u0412\u0421\u041A."
+            right: "Верно. Шанс — 1 из 96 000",
+            wrong: "Неверно. Шанс — 1 из 96 000",
+            text: "Если часто отправляете грузы, такое может произойти. Но&nbsp;посылки теряют реже, чем безвозвратно портится имущество в&nbsp;ипотечной квартире&nbsp;&mdash; например, при прорыве канализации. Жить спокойнее просто&nbsp;&mdash; оформите страхование имущества за&nbsp;5&nbsp;минут онлайн в&nbsp;Страховом доме ВСК."
         }
     },
     {
-        image: new URL(require("38d0f216ee99eec7")),
-        questionText: "\u0410&nbsp;\u043A\u0430\u043A\u043E\u0432\u0430 \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E\u0441\u0442\u044C, \u0447\u0442\u043E \u0432&nbsp;\u0432\u0430\u0441 \u043F\u043E\u043F\u0430\u0434\u0451\u0442 \u043C\u043E\u043B\u043D\u0438\u044F?",
+        image: new URL(require("b29b5056af79a2e0")),
+        questionText: "А&nbsp;какова вероятность, что в&nbsp;вас попадёт молния?",
         questionAnswers: [
-            "1 \u0438\u0437 330 000",
-            "1 \u0438\u0437 20 000",
-            "1 \u0438\u0437 145 000"
+            "1 из 330 000",
+            "1 из 20 000",
+            "1 из 145 000"
         ],
         number: 6,
-        rightAnswer: "1 \u0438\u0437 330 000",
+        rightAnswer: "1 из 330 000",
         answerText: {
-            right: "\u0414\u0430, \u0432\u0435\u0440\u043D\u043E. \u0422\u0430\u043A\u043E\u0439&nbsp;\u0448\u0430\u043D\u0441&nbsp;\u2014&nbsp;1&nbsp;\u043A&nbsp;330&nbsp;000",
-            wrong: "\u041D\u0435\u0432\u0435\u0440\u043D\u043E. \u0422\u0430\u043A\u043E\u0439&nbsp;\u0448\u0430\u043D\u0441&nbsp;\u2014&nbsp;1&nbsp;\u043A&nbsp;330&nbsp;000",
-            text: "\u041D\u0435\u043C\u043D\u043E\u0433\u043E. \u0417\u0430\u0442\u043E \u043C\u043E\u043B\u043D\u0438\u0438&nbsp;&mdash; \u043E\u0434\u043D\u0430 \u0438\u0437&nbsp;\u043F\u0440\u0438\u0447\u0438\u043D \u043F\u043E\u0436\u0430\u0440\u043E\u0432 \u0432&nbsp;\u043A\u0432\u0430\u0440\u0442\u0438\u0440\u0435, \u043D\u0430\u0440\u044F\u0434\u0443 \u0441&nbsp;\u043F\u043E\u0434\u0436\u043E\u0433\u043E\u043C \u0438&nbsp;\u0432\u043E\u0437\u0433\u043E\u0440\u0430\u043D\u0438\u0435\u043C \u043E\u0442&nbsp;\u0431\u044B\u0442\u043E\u0432\u043E\u0439 \u0442\u0435\u0445\u043D\u0438\u043A\u0438. \u0421\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430 \u0443\u0431\u0435\u0440\u0435\u0436\u0451\u0442 \u0432\u0430\u0441 \u043E\u0442&nbsp;\u0432\u044B\u043F\u043B\u0430\u0442 \u0434\u0435\u043D\u0435\u0433 \u0431\u0430\u043D\u043A\u0443, \u0435\u0441\u043B\u0438 \u0434\u043E\u043C \u0441\u0433\u043E\u0440\u0438\u0442 \u043F\u0440\u0438 \u043F\u043E\u0436\u0430\u0440\u0435."
+            right: "Да, верно. Такой&nbsp;шанс&nbsp;—&nbsp;1&nbsp;к&nbsp;330&nbsp;000",
+            wrong: "Неверно. Такой&nbsp;шанс&nbsp;—&nbsp;1&nbsp;к&nbsp;330&nbsp;000",
+            text: "Немного. Зато молнии&nbsp;&mdash; одна из&nbsp;причин пожаров в&nbsp;квартире, наряду с&nbsp;поджогом и&nbsp;возгоранием от&nbsp;бытовой техники. Страхование имущества убережёт вас от&nbsp;выплат денег банку, если дом сгорит при пожаре."
         }
     }
 ];
 const dataResults = {
     lowResult: {
-        subtitle: "\u0412\u043E\u0437\u043C\u043E\u0436\u043D\u043E, \u0432\u0430\u0448\u0430 \u0438\u043D\u0442\u0443\u0438\u0446\u0438\u044F \u0435\u0449\u0451 \u0441\u043F\u0438\u0442 \u0438 \u0432\u0430\u043C \u043D\u0435 \u0441\u0442\u043E\u0438\u0442 \u0434\u0435\u043B\u0430\u0442\u044C \u0441\u0442\u0430\u0432\u043A\u0438. \u041D\u043E, \u0441 \u0434\u0440\u0443\u0433\u043E\u0439 \u0441\u0442\u043E\u0440\u043E\u043D\u044B, \u0443\u043C\u0435\u043D\u0438\u0435 \u043F\u0440\u0435\u0434\u0441\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u0448\u0430\u043D\u0441\u044B \u043F\u0430\u0434\u0435\u043D\u0438\u044F \u043C\u0435\u0442\u0435\u043E\u0440\u0438\u0442\u0430 \u0432\u043E \u0434\u0432\u043E\u0440 \u043D\u0435 \u0441\u043F\u0430\u0441\u0451\u0442 \u043E\u0442 \u043D\u0435\u0433\u043E.",
-        text: "\u041D\u0435 \u0431\u0435\u0441\u043F\u043E\u043A\u043E\u0438\u0442\u044C\u0441\u044F \u0437\u0430 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u043E \u0438 \u0437\u0430 \u043D\u0435\u0438\u0437\u0431\u0435\u0436\u043D\u043E\u0441\u0442\u044C \u0432\u044B\u043F\u043B\u0430\u0442\u044B<br/>\u0438\u043F\u043E\u0442\u0435\u043A\u0438 \u043F\u043E\u043C\u043E\u0436\u0435\u0442 \u0421\u0442\u0440\u0430\u0445\u043E\u0432\u043E\u0439 \u0414\u043E\u043C \u0412\u0421\u041A \u2014 <strong>\u0434\u043E 31 \u0434\u0435\u043A\u0430\u0431\u0440\u044F 2023</strong> \u0433\u043E\u0434\u0430<br/>\u043C\u043E\u0436\u043D\u043E \u0437\u0430\u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u0442\u044C \u0438 \u0442\u043E, \u0438 \u0434\u0440\u0443\u0433\u043E\u0435, \u0435\u0441\u043B\u0438 \u043E\u043D\u0438 \u0443 \u0432\u0430\u0441 \u0435\u0441\u0442\u044C, <strong>\u0441\u043E \u0441\u043A\u0438\u0434\u043A\u043E\u0439 3%</strong> \u043D\u0430 \u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430, \u0436\u0438\u0437\u043D\u0438 \u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F, \u0442\u0438\u0442\u0443\u043B\u0430, \u043E\u0444\u043E\u0440\u043C\u043B\u044F\u0435\u043C\u043E\u0435 \u0432 \u0440\u0430\u043C\u043A\u0430\u0445 \u0434\u043E\u0433\u043E\u0432\u043E\u0440\u0430 \u0438\u043F\u043E\u0442\u0435\u043A\u0438, \u0438 <strong>15 % \u2014 \u043D\u0430 \u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430</strong>, \u0436\u0438\u0437\u043D\u0438 \u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F \u043F\u043E \u043F\u0440\u043E\u043C\u043E\u043A\u043E\u0434\u0443 <strong>yandex23</strong>. \u0421\u043A\u0438\u0434\u043A\u0430 \u043D\u0435 \u0441\u0443\u043C\u043C\u0438\u0440\u0443\u0435\u0442\u0441\u044F \u0441 \u0434\u0440\u0443\u0433\u0438\u043C\u0438 \u0430\u043A\u0446\u0438\u044F\u043C\u0438 \u0438 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u0430 \u0432\u0441\u0435\u043C \u043A\u043B\u0438\u0435\u043D\u0442\u0430\u043C."
+        subtitle: "Возможно, ваша интуиция ещё спит и вам не стоит делать ставки. Но, с другой стороны, умение предсказывать шансы падения метеорита во двор не спасёт от него.",
+        text: "Не беспокоиться за имущество и за неизбежность выплаты<br/>ипотеки поможет Страховой Дом ВСК — <strong>до 31 декабря 2023</strong> года<br/>можно застраховать и то, и другое, если они у вас есть, <strong>со скидкой 3%</strong> на страхование имущества, жизни и здоровья, титула, оформляемое в рамках договора ипотеки, и <strong>15 % — на страхование имущества</strong>, жизни и здоровья по промокоду <strong>yandex23</strong>. Скидка не суммируется с другими акциями и доступна всем клиентам."
     },
     middleResult: {
-        subtitle: "\u0425\u043E\u0440\u043E\u0448\u0438\u0439 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442, \u0432\u0435\u043B\u0438\u043A\u0430 \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E\u0441\u0442\u044C, \u0447\u0442\u043E \u0432 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0440\u0430\u0437 \u0432\u044B \u0441\u043F\u0440\u0430\u0432\u0438\u0442\u0435\u0441\u044C \u043B\u0443\u0447\u0448\u0435. \u041F\u043E\u0434\u043C\u0435\u0447\u0430\u0439\u0442\u0435 \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u043D\u044B\u0435 \u0444\u0430\u043A\u0442\u044B \u0438 \u043F\u0440\u043E\u0441\u0447\u0438\u0442\u044B\u0432\u0430\u0439\u0442\u0435 \u0448\u0430\u043D\u0441\u044B \u043D\u0435\u0431\u043B\u0430\u0433\u043E\u043F\u0440\u0438\u044F\u0442\u043D\u044B\u0445 \u0438\u0441\u0445\u043E\u0434\u043E\u0432.",
-        text: "\u0410 \u043F\u043E\u043A\u0430 \u2014 \u043C\u043E\u0436\u043D\u043E \u0437\u0430\u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u0442\u044C \u043D\u0435 \u0442\u043E\u043B\u044C\u043A\u043E \u0441\u0430\u043C\u043E \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u043E,<br/>\u043D\u043E \u0438 \u0440\u0438\u0441\u043A\u0438 \u043F\u043E \u0438\u043F\u043E\u0442\u0435\u043A\u0435, \u0435\u0441\u043B\u0438 \u043E\u043D\u0438 \u0443 \u0432\u0430\u0441 \u0435\u0441\u0442\u044C, <strong>\u0441\u043E \u0441\u043A\u0438\u0434\u043A\u043E\u0439 3%</strong> \u043D\u0430<br/>\u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430, \u0436\u0438\u0437\u043D\u0438 \u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F, \u0442\u0438\u0442\u0443\u043B\u0430, \u043E\u0444\u043E\u0440\u043C\u043B\u044F\u0435\u043C\u043E\u0435 \u0432<br/>\u0440\u0430\u043C\u043A\u0430\u0445 \u0434\u043E\u0433\u043E\u0432\u043E\u0440\u0430 \u0438\u043F\u043E\u0442\u0435\u043A\u0438, \u0438 <strong>15 % \u2014 \u043D\u0430 \u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430</strong>,<br/>\u0436\u0438\u0437\u043D\u0438 \u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F \u043F\u043E \u043F\u0440\u043E\u043C\u043E\u043A\u043E\u0434\u0443 <strong>yandex23</strong>. \u0421\u043A\u0438\u0434\u043A\u0430 \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u0435\u0442<br/><strong>\u0434\u043E 31 \u0434\u0435\u043A\u0430\u0431\u0440\u044F 2023</strong> \u0433\u043E\u0434\u0430, \u043D\u0435 \u0441\u0443\u043C\u043C\u0438\u0440\u0443\u0435\u0442\u0441\u044F \u0441 \u0434\u0440\u0443\u0433\u0438\u043C\u0438 \u0430\u043A\u0446\u0438\u044F\u043C\u0438<br/>\u0421\u0442\u0440\u0430\u0445\u043E\u0432\u043E\u0433\u043E \u0414\u043E\u043C\u0430 \u0412\u0421\u041A \u0438 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u0430 \u0432\u0441\u0435\u043C \u043A\u043B\u0438\u0435\u043D\u0442\u0430\u043C."
+        subtitle: "Хороший результат, велика вероятность, что в следующий раз вы справитесь лучше. Подмечайте интересные факты и просчитывайте шансы неблагоприятных исходов.",
+        text: "А пока — можно застраховать не только само имущество,<br/>но и риски по ипотеке, если они у вас есть, <strong>со скидкой 3%</strong> на<br/>страхование имущества, жизни и здоровья, титула, оформляемое в<br/>рамках договора ипотеки, и <strong>15 % — на страхование имущества</strong>,<br/>жизни и здоровья по промокоду <strong>yandex23</strong>. Скидка действует<br/><strong>до 31 декабря 2023</strong> года, не суммируется с другими акциями<br/>Страхового Дома ВСК и доступна всем клиентам."
     },
     highResult: {
-        subtitle: "\u041F\u043E\u0437\u0434\u0440\u0430\u0432\u043B\u044F\u0435\u043C! \u0412 \u044D\u0442\u043E\u0442 \u0440\u0430\u0437 \u0438\u043D\u0442\u0443\u0438\u0446\u0438\u044F \u0432\u0430\u0441 \u043D\u0435 \u043F\u043E\u0434\u0432\u0435\u043B\u0430. \u041D\u043E \u043D\u0430 \u0442\u043E \u043E\u043D\u0430 \u0438 \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E\u0441\u0442\u044C, \u0447\u0442\u043E\u0431\u044B \u0438\u043D\u043E\u0433\u0434\u0430 \u0441\u043B\u0443\u0447\u0430\u0442\u044C\u0441\u044F.",
-        text: "\u041F\u043E\u044D\u0442\u043E\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u0447\u0443\u0432\u0441\u0442\u0432\u043E\u0432\u0430\u0442\u044C \u0441\u0435\u0431\u044F \u0437\u0430\u0449\u0438\u0449\u0451\u043D\u043D\u0435\u0435, \u043C\u043E\u0436\u043D\u043E<br/>\u0437\u0430\u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u0442\u044C \u043D\u0435 \u0442\u043E\u043B\u044C\u043A\u043E \u0441\u0430\u043C\u043E \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u043E, \u043D\u043E \u0438 \u0440\u0438\u0441\u043A\u0438 \u043F\u043E \u0438\u043F\u043E\u0442\u0435\u043A\u0435,<br/>\u0435\u0441\u043B\u0438 \u043E\u043D\u0430 \u0443 \u0432\u0430\u0441 \u0435\u0441\u0442\u044C, <strong>\u0441\u043E \u0441\u043A\u0438\u0434\u043A\u043E\u0439 3%</strong> \u043D\u0430 \u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430,<br/>\u0436\u0438\u0437\u043D\u0438 \u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F, \u0442\u0438\u0442\u0443\u043B\u0430, \u043E\u0444\u043E\u0440\u043C\u043B\u044F\u0435\u043C\u043E\u0435 \u0432 \u0440\u0430\u043C\u043A\u0430\u0445 \u0434\u043E\u0433\u043E\u0432\u043E\u0440\u0430<br/>\u0438\u043F\u043E\u0442\u0435\u043A\u0438, \u0438 <strong>15 % \u2014 \u043D\u0430 \u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430</strong>, \u0436\u0438\u0437\u043D\u0438 \u0438 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F,<br/>\u043F\u043E \u043F\u0440\u043E\u043C\u043E\u043A\u043E\u0434\u0443 <strong>yandex23</strong>. \u0421\u043A\u0438\u0434\u043A\u0430 \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u0435\u0442 <strong>\u0434\u043E 31 \u0434\u0435\u043A\u0430\u0431\u0440\u044F 2023</strong><br/>\u0433\u043E\u0434\u0430, \u043D\u0435 \u0441\u0443\u043C\u043C\u0438\u0440\u0443\u0435\u0442\u0441\u044F \u0441 \u0434\u0440\u0443\u0433\u0438\u043C\u0438 \u0430\u043A\u0446\u0438\u044F\u043C\u0438 \u0421\u0442\u0440\u0430\u0445\u043E\u0432\u043E\u0433\u043E \u0414\u043E\u043C\u0430<br/>\u0412\u0421\u041A \u0438 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u0430 \u0432\u0441\u0435\u043C \u043A\u043B\u0438\u0435\u043D\u0442\u0430\u043C."
+        subtitle: "Поздравляем! В этот раз интуиция вас не подвела. Но на то она и вероятность, чтобы иногда случаться.",
+        text: "Поэтому, чтобы чувствовать себя защищённее, можно<br/>застраховать не только само имущество, но и риски по ипотеке,<br/>если она у вас есть, <strong>со скидкой 3%</strong> на страхование имущества,<br/>жизни и здоровья, титула, оформляемое в рамках договора<br/>ипотеки, и <strong>15 % — на страхование имущества</strong>, жизни и здоровья,<br/>по промокоду <strong>yandex23</strong>. Скидка действует <strong>до 31 декабря 2023</strong><br/>года, не суммируется с другими акциями Страхового Дома<br/>ВСК и доступна всем клиентам."
     },
-    image: String(new URL(require("43c8786a9390690"))),
-    pomocodeText: "\u041F\u0440\u043E\u043C\u043E\u043A\u043E\u0434 \u043D\u0430&nbsp;\u0441\u043A\u0438\u0434\u043A\u0443 \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u0435\u0442 \u0432&nbsp;\u043F\u0435\u0440\u0438\u043E\u0434 \u0441&nbsp;18&nbsp;\u043F\u043E&nbsp;30&nbsp;\u043D\u043E\u044F\u0431\u0440\u044F 2023&nbsp;\u0433.&nbsp;\u0438&nbsp;\u0434\u0430\u0435\u0442 \u043F\u0440\u0430\u0432\u043E \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0441\u043A\u0438\u0434\u043A\u0438 \u0432&nbsp;\u0440\u0430\u0437\u043C\u0435\u0440\u0435 3&nbsp;% \u043D\u0430&nbsp;\u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430, \u0436\u0438\u0437\u043D\u0438 \u0438&nbsp;\u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F, \u0442\u0438\u0442\u0443\u043B\u0430, \u043E\u0444\u043E\u0440\u043C\u043B\u044F\u0435\u043C\u043E\u0435 \u0432&nbsp;\u0440\u0430\u043C\u043A\u0430\u0445 \u0434\u043E\u0433\u043E\u0432\u043E\u0440\u0430 \u0438\u043F\u043E\u0442\u0435\u043A\u0438, \u0430&nbsp;\u0442\u0430\u043A\u0436\u0435 \u0441\u043A\u0438\u0434\u043A\u0438 \u0432&nbsp;\u0440\u0430\u0437\u043C\u0435\u0440\u0435 15&nbsp;% \u043D\u0430&nbsp;\u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u0435 \u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430, \u0436\u0438\u0437\u043D\u0438 \u0438&nbsp;\u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F, \u0442\u0438\u0442\u0443\u043B\u0430.\u041F\u0440\u043E\u043C\u043E\u043A\u043E\u0434 \u043C\u043E\u0436\u043D\u043E \u043F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C \u0442\u043E\u043B\u044C\u043A\u043E 1&nbsp;\u0440\u0430\u0437 \u0432&nbsp;\u043E\u0442\u043D\u043E\u0448\u0435\u043D\u0438\u0438 \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u0432\u0438\u0434\u0430 \u0441\u0442\u0440\u0430\u0445\u043E\u0432\u0430\u043D\u0438\u044F. \u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u043D\u0435&nbsp;\u0441\u0443\u043C\u043C\u0438\u0440\u0443\u0435\u0442\u0441\u044F \u0441&nbsp;\u0434\u0440\u0443\u0433\u0438\u043C\u0438 \u0430\u043A\u0446\u0438\u044F\u043C\u0438 \u0438&nbsp;\u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F\u043C\u0438. \u0421\u0442\u0440\u0430\u0445\u043E\u0432\u044B\u0435 \u0443\u0441\u043B\u0443\u0433\u0438 \u043F\u0440\u0435\u0434\u043E\u0441\u0442\u0430\u0432\u043B\u044F\u044E\u0442\u0441\u044F \u0421\u0442\u0440\u0430\u0445\u043E\u0432\u044B\u043C \u0430\u043A\u0446\u0438\u043E\u043D\u0435\u0440\u043D\u044B\u043C \u043E\u0431\u0449\u0435\u0441\u0442\u0432\u043E\u043C &laquo;\u0412\u0421\u041A&raquo;, \u0418\u041D\u041D: 7710026574. \u041B\u0438\u0446\u0435\u043D\u0437\u0438\u044F \u0431\u0430\u043D\u043A\u0430 \u0420\u043E\u0441\u0441\u0438\u0438 \u043E\u0442&nbsp;11.09.2015: \u0421\u041B &#8470;&nbsp;0621, \u0421\u0418 &#8470;&nbsp;0621, \u041E\u0421 &#8470;&nbsp;0621, \u041E\u0421 &#8470;&nbsp;0621&ndash;04, \u041E\u0421 &#8470;&nbsp;0621&ndash;05, \u041F\u0421 &#8470;&nbsp;0621."
+    image: String(new URL(require("335daab3416314ba"))),
+    pomocodeText: "Промокод на&nbsp;скидку действует в&nbsp;период с&nbsp;18&nbsp;по&nbsp;30&nbsp;ноября 2023&nbsp;г.&nbsp;и&nbsp;дает право получения скидки в&nbsp;размере 3&nbsp;% на&nbsp;страхование имущества, жизни и&nbsp;здоровья, титула, оформляемое в&nbsp;рамках договора ипотеки, а&nbsp;также скидки в&nbsp;размере 15&nbsp;% на&nbsp;страхование имущества, жизни и&nbsp;здоровья, титула.Промокод можно применить только 1&nbsp;раз в&nbsp;отношении каждого вида страхования. Предложение не&nbsp;суммируется с&nbsp;другими акциями и&nbsp;предложениями. Страховые услуги предоставляются Страховым акционерным обществом &laquo;ВСК&raquo;, ИНН: 7710026574. Лицензия банка России от&nbsp;11.09.2015: СЛ &#8470;&nbsp;0621, СИ &#8470;&nbsp;0621, ОС &#8470;&nbsp;0621, ОС &#8470;&nbsp;0621&ndash;04, ОС &#8470;&nbsp;0621&ndash;05, ПС &#8470;&nbsp;0621."
 };
 
-},{"996b966c5238afa3":"aGDDt","d040fd4aba32dfaf":"iDNQP","8db686e3e50d102b":"d1cyr","cc09c474b0048bea":"5qq5U","aa6c4e807b702494":"aDYno","38d0f216ee99eec7":"ao0Yq","43c8786a9390690":"4kaAF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aGDDt":[function(require,module,exports) {
-module.exports = require("9629cedd53c1cf57").getBundleURL("7XnOB") + "question1.a45c23e9.png" + "?" + Date.now();
+},{"cfc6e04b99b6767c":"aGDDt","fd54acab0ce22e0":"iDNQP","63dec6cacfaa7b9a":"d1cyr","ba3a67789d5a7110":"5qq5U","526cea192e9a2a42":"aDYno","b29b5056af79a2e0":"ao0Yq","335daab3416314ba":"4kaAF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aGDDt":[function(require,module,exports) {
+module.exports = require("db849828e3f1746e").getBundleURL("7XnOB") + "question1.a45c23e9.png" + "?" + Date.now();
 
-},{"9629cedd53c1cf57":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+},{"db849828e3f1746e":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
 var bundleURL = {};
 function getBundleURLCached(id) {
@@ -2541,8 +2514,7 @@ function getBundleURL() {
 }
 function getBaseURL(url) {
     return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
-}
-// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
 function getOrigin(url) {
     var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
     if (!matches) throw new Error("Origin not found");
@@ -2553,24 +2525,24 @@ exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
 },{}],"iDNQP":[function(require,module,exports) {
-module.exports = require("8b5192155a1201e1").getBundleURL("7XnOB") + "question2.6a4ed7d8.png" + "?" + Date.now();
+module.exports = require("d4f81c01f9019b7f").getBundleURL("7XnOB") + "question2.6a4ed7d8.png" + "?" + Date.now();
 
-},{"8b5192155a1201e1":"lgJ39"}],"d1cyr":[function(require,module,exports) {
-module.exports = require("ce0230cbfdeca639").getBundleURL("7XnOB") + "question3.ed130377.png" + "?" + Date.now();
+},{"d4f81c01f9019b7f":"lgJ39"}],"d1cyr":[function(require,module,exports) {
+module.exports = require("bedba9b749047173").getBundleURL("7XnOB") + "question3.ed130377.png" + "?" + Date.now();
 
-},{"ce0230cbfdeca639":"lgJ39"}],"5qq5U":[function(require,module,exports) {
-module.exports = require("d6b74154d018d524").getBundleURL("7XnOB") + "question4.59e58e5a.png" + "?" + Date.now();
+},{"bedba9b749047173":"lgJ39"}],"5qq5U":[function(require,module,exports) {
+module.exports = require("39c02f33ef7ad0c0").getBundleURL("7XnOB") + "question4.59e58e5a.png" + "?" + Date.now();
 
-},{"d6b74154d018d524":"lgJ39"}],"aDYno":[function(require,module,exports) {
-module.exports = require("f1eccf327897a2a0").getBundleURL("7XnOB") + "question5.52eaabc1.png" + "?" + Date.now();
+},{"39c02f33ef7ad0c0":"lgJ39"}],"aDYno":[function(require,module,exports) {
+module.exports = require("e0d266457f780ac3").getBundleURL("7XnOB") + "question5.52eaabc1.png" + "?" + Date.now();
 
-},{"f1eccf327897a2a0":"lgJ39"}],"ao0Yq":[function(require,module,exports) {
-module.exports = require("19e695d7869e5fef").getBundleURL("7XnOB") + "question6.d4fe1e29.png" + "?" + Date.now();
+},{"e0d266457f780ac3":"lgJ39"}],"ao0Yq":[function(require,module,exports) {
+module.exports = require("2e4e8e74ee46f011").getBundleURL("7XnOB") + "question6.d4fe1e29.png" + "?" + Date.now();
 
-},{"19e695d7869e5fef":"lgJ39"}],"4kaAF":[function(require,module,exports) {
-module.exports = require("a0ce9127d5911e83").getBundleURL("7XnOB") + "result.c6bf3127.png" + "?" + Date.now();
+},{"2e4e8e74ee46f011":"lgJ39"}],"4kaAF":[function(require,module,exports) {
+module.exports = require("4320ad47de3727a0").getBundleURL("7XnOB") + "result.c6bf3127.png" + "?" + Date.now();
 
-},{"a0ce9127d5911e83":"lgJ39"}],"jSVMY":[function(require,module,exports) {
+},{"4320ad47de3727a0":"lgJ39"}],"jSVMY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "closePromoInfo", ()=>closePromoInfo);
@@ -2623,19 +2595,19 @@ const quizTemplate = (question)=>{
           <div class="quiz__progress-line"></div>
         </div>
         <h3 class="quiz__title-mobile">${question.number}/6</h3>
-        <h3 class="quiz__title">\u{412}\u{43E}\u{43F}\u{440}\u{43E}\u{441} ${question.number} \u{438}\u{437} 6</h3>
+        <h3 class="quiz__title">Вопрос ${question.number} из 6</h3>
         <p class="quiz__text">${question.questionText}</p>
         <div class="quiz__buttons">
           <div class="quiz__answers">
             ${renderAnswers(question.questionAnswers)}
           </div>
           <buttton class="quiz__button">
-            <img class="quiz__button-img_gray" src="${new URL(require("547d4b825eb8ee07"))}" alt="">
-            <img class="quiz__button-img" src="${new URL(require("d3d4ddd2740c03e0"))}" alt="">
+            <img class="quiz__button-img_gray" src="${new URL(require("fe9490c44f6c4a1e"))}" alt="">
+            <img class="quiz__button-img" src="${new URL(require("18946b7952d081bc"))}" alt="">
           </buttton>
         </div>
       </div>
-      <div class="quiz__check">\u{41F}\u{440}\u{43E}\u{432}\u{435}\u{440}\u{438}\u{442}\u{44C}
+      <div class="quiz__check">Проверить
       </div>
     </div>
   `;
@@ -2651,7 +2623,7 @@ const answerTemplate = (question, isRight)=>{
           ${question.answerText.text}
         </p>
       </div>
-      <button class="quiz__answer-button">${question.number === 6 ? "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442" : "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0432\u043E\u043F\u0440\u043E\u0441"}</button>
+      <button class="quiz__answer-button">${question.number === 6 ? "Посмотреть результат" : "Следующий вопрос"}</button>
     </div>
   `;
 };
@@ -2661,8 +2633,8 @@ const resultTemplate = (count)=>{
     <img class="quiz__result-img" src="${(0, _data.dataResults).image}">
     <div class="quiz__result-content">
       <div class="quiz__result-content_wrapper">
-        <h3 class="quiz__result-title">\u{420}\u{435}\u{437}\u{443}\u{43B}\u{44C}\u{442}\u{430}\u{442} \u{442}\u{435}\u{441}\u{442}\u{430}</h3>
-        <p class="quiz__result-subtitle">${count} \u{432}\u{435}\u{440}\u{43D}\u{44B}\u{439} \u{43E}\u{442}\u{432}\u{435}\u{442} \u{438}\u{437} 6</p>
+        <h3 class="quiz__result-title">Результат теста</h3>
+        <p class="quiz__result-subtitle">${count} верный ответ из 6</p>
         <p class="quiz__result-text">${generateResultText(count, "subtitle")}</p>
         <p class="quiz__result-description">${generateResultText(count, "text")}<button class="quiz__result-info"></button>
         <div class="quiz__result-promocode">
@@ -2673,7 +2645,7 @@ const resultTemplate = (count)=>{
       <a class="quiz__result-button" 
         target="_blank"
         href="https://www.vsk.ru/klientam/ipoteka?t=about&utm_source=yandex_promo&utm_medium=ipoteka&adrclid=DYL5lh3KnJy1dqguDmBXXJn3hRfDh7y1jILg_dq_NYNJsuAkC0Td2X1QPBm2pYSObQM_VCoW_Sf2LRpKN6fiY">
-        \u{418}\u{441}\u{43F}\u{43E}\u{43B}\u{44C}\u{437}\u{43E}\u{432}\u{430}\u{442}\u{44C} \u{43F}\u{440}\u{43E}\u{43C}\u{43E}\u{43A}\u{43E}\u{434}
+        Использовать промокод
       </a>
       <buttton class="quiz__result-button_close"></buttton>
     </div>
@@ -2681,12 +2653,12 @@ const resultTemplate = (count)=>{
   `;
 };
 
-},{"./data":"1N0GG","547d4b825eb8ee07":"ceq1t","d3d4ddd2740c03e0":"grUfi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ceq1t":[function(require,module,exports) {
-module.exports = require("1f46267c47479353").getBundleURL("7XnOB") + "button_gray.8181a352.svg" + "?" + Date.now();
+},{"./data":"1N0GG","fe9490c44f6c4a1e":"ceq1t","18946b7952d081bc":"grUfi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ceq1t":[function(require,module,exports) {
+module.exports = require("273bd4d0c9fcbc12").getBundleURL("7XnOB") + "button_gray.8181a352.svg" + "?" + Date.now();
 
-},{"1f46267c47479353":"lgJ39"}],"grUfi":[function(require,module,exports) {
-module.exports = require("772ce443750a64c1").getBundleURL("7XnOB") + "button.8d621ddf.svg" + "?" + Date.now();
+},{"273bd4d0c9fcbc12":"lgJ39"}],"grUfi":[function(require,module,exports) {
+module.exports = require("90668494dc5379e5").getBundleURL("7XnOB") + "button.8d621ddf.svg" + "?" + Date.now();
 
-},{"772ce443750a64c1":"lgJ39"}]},["e7zDJ","j6eqU"], "j6eqU", "parcelRequire9b17")
+},{"90668494dc5379e5":"lgJ39"}]},["loNOH","j6eqU"], "j6eqU", "parcelRequire9b17")
 
 //# sourceMappingURL=index.482d1c68.js.map

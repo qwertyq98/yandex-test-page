@@ -36,10 +36,10 @@
 }
 
 .hamburger-inner, .hamburger-inner:before, .hamburger-inner:after {
-  background-color: #000;
-  border-radius: 4rem;
   width: 18rem;
   height: 2rem;
+  background-color: #000;
+  border-radius: 4rem;
   transition-property: transform;
   transition-duration: .15s;
   transition-timing-function: ease;
@@ -167,13 +167,13 @@ html, body {
   position: relative;
 }
 
-@media screen and (width <= 1439.9px) {
+@media screen and (max-width: 1439.9px) {
   html, body {
     font-size: .0694445vw;
   }
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   html, body {
     font-size: .266667vw;
   }
@@ -186,7 +186,7 @@ body {
   transition: all .1s cubic-bezier(.65, 0, .35, 1);
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   body {
     min-height: auto;
   }
@@ -194,11 +194,11 @@ body {
 
 body:after {
   content: "";
+  height: 160vh;
+  width: 100%;
   opacity: 0;
   pointer-events: none;
   background-color: #fff;
-  width: 100%;
-  height: 160vh;
   transition: all .1s cubic-bezier(.65, 0, .35, 1);
   position: fixed;
   top: 50%;
@@ -238,12 +238,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .visually-hidden {
+  width: 1px;
+  height: 1px;
   white-space: nowrap;
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   border: 0;
-  width: 1px;
-  height: 1px;
   margin: -1px;
   padding: 0;
   position: absolute;
@@ -282,10 +282,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .card {
-  background-color: #fff;
-  border-radius: 15rem;
   width: 100%;
   height: 100%;
+  background-color: #fff;
+  border-radius: 15rem;
   padding: 16rem;
 }
 
@@ -293,7 +293,7 @@ body::-webkit-scrollbar-thumb {
   display: none;
 }
 
-@media screen and (width >= 999.9px) {
+@media screen and (min-width: 999.9px) {
   .title {
     font-size: 44rem;
     line-height: 1.1;
@@ -323,11 +323,11 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   .mobile-menu {
     z-index: 100;
-    flex-flow: column;
     width: 100%;
+    flex-flow: column;
     margin: 0;
     display: flex;
     position: relative;
@@ -336,10 +336,10 @@ body::-webkit-scrollbar-thumb {
 
   .mobile-menu__head {
     z-index: 1;
+    min-height: 55rem;
     background-color: #fff;
     justify-content: space-between;
     align-items: center;
-    min-height: 55rem;
     padding: 0 20rem 0 12rem;
     display: flex;
   }
@@ -370,6 +370,8 @@ body::-webkit-scrollbar-thumb {
 
   .mobile-menu__wrapper {
     z-index: 0;
+    width: 100%;
+    height: 0;
     text-align: center;
     will-change: height;
     background-color: #fff;
@@ -377,8 +379,6 @@ body::-webkit-scrollbar-thumb {
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 0;
     padding: 0 40rem;
     font-size: 16rem;
     list-style: none;
@@ -419,15 +419,15 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-@media screen and (width >= 999.9px) {
+@media screen and (min-width: 999.9px) {
   .menu {
     z-index: 100;
-    background-color: #f4f7fb;
-    border-radius: 15rem;
-    justify-content: space-between;
     width: 100%;
     max-width: 1332rem;
     min-height: 77rem;
+    background-color: #f4f7fb;
+    border-radius: 15rem;
+    justify-content: space-between;
     padding: 40rem 142rem 46rem;
     font-size: 16rem;
     display: flex;
@@ -463,11 +463,11 @@ body::-webkit-scrollbar-thumb {
   }
 
   .menu__list {
+    max-width: 553rem;
     flex-flow: row;
     flex-grow: 1;
     justify-content: space-between;
     align-items: end;
-    max-width: 553rem;
     padding: 0;
     list-style-type: none;
     display: flex;
@@ -491,6 +491,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   .promo {
+    width: 100%;
+    max-width: 1332rem;
+    height: 566rem;
     background-color: #fff;
     background-image: url("bg_promo.a68de31e.png");
     background-position: 100%;
@@ -499,9 +502,6 @@ body::-webkit-scrollbar-thumb {
     border-radius: 20rem;
     justify-content: flex-start;
     align-items: start;
-    width: 100%;
-    max-width: 1332rem;
-    height: 566rem;
     margin: 0 auto 100rem;
     padding: 91rem 0 92rem 143rem;
     display: flex;
@@ -509,10 +509,10 @@ body::-webkit-scrollbar-thumb {
   }
 
   .promo__content {
-    flex-direction: column;
-    gap: 34rem;
     width: 100%;
     max-width: 693rem;
+    flex-direction: column;
+    gap: 34rem;
     margin: 0;
     display: flex;
   }
@@ -534,10 +534,10 @@ body::-webkit-scrollbar-thumb {
 
   .promo__button {
     color: #fff;
-    background-color: #077bed;
-    border-radius: 12rem;
     width: 100%;
     max-width: 257rem;
+    background-color: #077bed;
+    border-radius: 12rem;
     padding: 17rem 81rem;
     font-size: 16rem;
     font-weight: 500;
@@ -551,7 +551,7 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   .promo {
     display: none;
   }
@@ -561,11 +561,11 @@ body::-webkit-scrollbar-thumb {
   display: none;
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   .promo-mobile {
+    width: 100%;
     border-radius: 20rem;
     flex-direction: column;
-    width: 100%;
     padding: 48rem 12rem 10rem;
     display: flex;
     position: relative;
@@ -582,10 +582,10 @@ body::-webkit-scrollbar-thumb {
   }
 
   .promo-mobile__content {
+    width: 100%;
     background-color: #fff;
     border-radius: 20rem;
     flex-direction: column;
-    width: 100%;
     padding: 11rem 12rem 12rem;
     display: flex;
   }
@@ -611,11 +611,11 @@ body::-webkit-scrollbar-thumb {
 
   .promo-mobile__button {
     color: #fff;
+    width: 100%;
+    max-width: 100%;
     text-align: center;
     background-color: #077bed;
     border-radius: 12rem;
-    width: 100%;
-    max-width: 100%;
     margin-top: 85rem;
     padding: 17rem 81rem;
     font-size: 16rem;
@@ -630,16 +630,16 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-@media screen and (width >= 999.9px) {
+@media screen and (min-width: 999.9px) {
   .article {
+    width: 100%;
+    max-width: 1048rem;
     background-color: #fff;
     border-radius: 20rem;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
     align-items: center;
     gap: 24rem;
-    width: 100%;
-    max-width: 1048rem;
     margin: 0 auto 100rem;
     padding: 3.5rem 6rem;
     display: grid;
@@ -647,20 +647,20 @@ body::-webkit-scrollbar-thumb {
   }
 
   .article__content {
-    flex-direction: column;
     width: 100%;
     max-width: 693rem;
+    flex-direction: column;
     margin: 0;
     padding: 4rem;
     display: flex;
   }
 
   .article__img {
+    width: 500rem;
+    height: 100%;
     object-fit: cover;
     background: #f4f7fb;
     border-radius: 20rem;
-    width: 500rem;
-    height: 100%;
   }
 
   .article__title {
@@ -681,8 +681,8 @@ body::-webkit-scrollbar-thumb {
 
   .article__button {
     color: #077bed;
-    gap: 3rem;
     width: 100%;
+    gap: 3rem;
     padding: 0;
     font-size: 16rem;
     font-weight: 500;
@@ -701,12 +701,12 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   .article {
+    height: 100%;
     background-color: #fff;
     border-radius: 20rem;
     gap: 14rem;
-    height: 100%;
     margin: 0 12rem 80rem;
     padding: 14rem;
   }
@@ -716,10 +716,10 @@ body::-webkit-scrollbar-thumb {
   }
 
   .article__img {
-    background: #f4f7fb;
-    border-radius: 20rem;
     width: 100%;
     height: 100%;
+    background: #f4f7fb;
+    border-radius: 20rem;
   }
 
   .article__title {
@@ -737,8 +737,8 @@ body::-webkit-scrollbar-thumb {
 
   .article__button {
     color: #077bed;
-    gap: 6rem;
     width: 100%;
+    gap: 6rem;
     padding: 0;
     font-size: 14rem;
     font-weight: 500;
@@ -753,8 +753,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .options {
-  width: 100%;
   max-width: 1048rem;
+  width: 100%;
   margin: 0 auto 120rem;
 }
 
@@ -813,7 +813,7 @@ body::-webkit-scrollbar-thumb {
   right: 20rem;
 }
 
-.options__item-desktop:first-child {
+.options__item-desktop:nth-child(1) {
   grid-area: a;
 }
 
@@ -853,7 +853,7 @@ body::-webkit-scrollbar-thumb {
   display: none;
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   .options {
     margin: 0 auto 80rem;
     padding: 0 12rem;
@@ -928,8 +928,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .questions {
-  width: 100%;
   max-width: 1048rem;
+  width: 100%;
   margin: 0 auto 120rem;
 }
 
@@ -942,18 +942,18 @@ body::-webkit-scrollbar-thumb {
 }
 
 .questions button {
+  height: 31rem;
+  width: 31rem;
   background: #fff;
   border: none;
   border-radius: 50%;
-  width: 31rem;
-  height: 31rem;
   margin: 24rem 28rem 0 0;
   padding: 0;
 }
 
 .questions button img {
-  width: 31rem;
   height: 31rem;
+  width: 31rem;
 }
 
 .questions button img:hover {
@@ -985,8 +985,8 @@ body::-webkit-scrollbar-thumb {
 
 .questions__title {
   color: #303340;
-  width: 100%;
   max-width: 840rem;
+  width: 100%;
   padding: 24rem 0 28rem 28rem;
   font-size: 22rem;
   font-weight: 500;
@@ -1003,10 +1003,10 @@ body::-webkit-scrollbar-thumb {
 
 .is-open {
   color: #303340;
-  opacity: 1;
-  width: 100%;
   max-width: 650rem;
+  width: 100%;
   height: auto;
+  opacity: 1;
   margin-top: -18rem;
   padding: 0 28rem 28rem;
   font-family: inter;
@@ -1021,14 +1021,14 @@ body::-webkit-scrollbar-thumb {
   transform: rotate(45deg);
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   br {
     display: none;
   }
 
   .questions {
-    width: 100%;
     max-width: 1048rem;
+    width: 100%;
     margin: 0 auto 12rem;
     padding: 0 12rem;
   }
@@ -1075,8 +1075,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .banner {
-  width: 100%;
   max-width: 1048rem;
+  width: 100%;
   margin: 0 auto 120rem;
 }
 
@@ -1090,14 +1090,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .banner__image {
-  border-radius: 20rem;
   height: 100%;
+  border-radius: 20rem;
 }
 
 .banner__image img {
   object-fit: cover;
-  border-radius: 20rem;
   height: 100%;
+  border-radius: 20rem;
 }
 
 .banner__image img img {
@@ -1134,7 +1134,7 @@ body::-webkit-scrollbar-thumb {
   padding-left: 3rem;
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   .banner {
     margin: 0 auto 110rem;
     padding: 0 12rem;
@@ -1186,9 +1186,9 @@ body::-webkit-scrollbar-thumb {
 
 .contest {
   z-index: 1000;
-  background: #f4f7fb;
   width: 100%;
   height: 100%;
+  background: #f4f7fb;
   padding: 90rem 20rem 30rem;
   display: none;
   position: fixed;
@@ -1225,12 +1225,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .contest-form__name, .contest-form__phone, .contest-form__email, .contest-form__story textarea {
+  width: 100%;
+  min-height: 54rem;
   resize: none;
   border: none;
   border-radius: 15rem;
   outline: none;
-  width: 100%;
-  min-height: 54rem;
   margin-bottom: 9rem;
   padding: 17rem 20rem;
   position: relative;
@@ -1255,8 +1255,8 @@ body::-webkit-scrollbar-thumb {
 
 .contest-form__story .hint {
   z-index: 1;
-  cursor: pointer;
   width: 35rem;
+  cursor: pointer;
   padding: 10rem;
   position: absolute;
   top: 10rem;
@@ -1268,9 +1268,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .story-hint {
+  max-width: 225rem;
   pointer-events: none;
   opacity: .3;
-  max-width: 225rem;
   font-size: 12rem;
   line-height: 15rem;
   transition: opacity .25s;
@@ -1303,10 +1303,10 @@ body::-webkit-scrollbar-thumb {
 }
 
 .contest-form__agreement .custom-checkbox {
-  border: 1rem solid #3033404d;
-  border-radius: 2rem;
   min-width: 13rem;
   min-height: 13rem;
+  border: 1rem solid #3033404d;
+  border-radius: 2rem;
   margin-right: 10rem;
   display: inline-block;
 }
@@ -1326,32 +1326,32 @@ body::-webkit-scrollbar-thumb {
 }
 
 .photos input {
-  opacity: 0;
   width: 0;
   height: 0;
+  opacity: 0;
   position: absolute;
 }
 
 .photos__field {
+  width: 100%;
+  min-height: 54rem;
   cursor: pointer;
   background-color: #fff;
   border-radius: 15rem;
   flex-flow: wrap;
-  width: 100%;
-  min-height: 54rem;
   padding: 20rem 25rem 16rem 40rem;
   display: flex;
   position: relative;
 }
 
 .photos__field:before {
+  width: 16rem;
+  height: 16rem;
   content: "";
   background-image: url("staple.862df78d.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 16rem;
-  height: 16rem;
   position: absolute;
   top: 20rem;
   left: 16rem;
@@ -1418,48 +1418,48 @@ body::-webkit-scrollbar-thumb {
   display: flex;
 }
 
-.photos__item:nth-child(odd) {
+.photos__item:nth-child(2n+1) {
   margin-right: 0;
 }
 
 .photos__item .photo-info {
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   min-height: 18rem;
+  justify-content: space-between;
+  align-items: center;
   display: flex;
 }
 
 .photos__item .photo-name {
+  max-width: 80rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   color: #077bed;
-  max-width: 80rem;
   font-size: 15rem;
   line-height: 1;
   overflow: hidden;
 }
 
 .photos__item .photo-preview {
+  width: 107rem;
+  height: 71rem;
   object-fit: cover;
   object-position: center;
   border-radius: 4rem;
-  width: 107rem;
-  height: 71rem;
   margin-bottom: 5rem;
   overflow: hidden;
 }
 
 .photos__item .photo-cross {
-  cursor: pointer;
   width: 10rem;
+  cursor: pointer;
 }
 
 .success-popup {
   z-index: 1;
-  background-color: #acb6c380;
   width: 100%;
   height: 100%;
+  background-color: #acb6c380;
   display: none;
   position: fixed;
   top: 0;
@@ -1468,11 +1468,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .success-popup-wrapper {
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100%;
   min-height: 600rem;
+  justify-content: center;
+  align-items: center;
   display: flex;
 }
 
@@ -1481,14 +1481,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .success-popup__content {
+  width: 320rem;
+  min-height: 200rem;
   text-align: center;
   background-color: #fff;
   border-radius: 15rem;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 320rem;
-  min-height: 200rem;
   padding: 33rem 16rem;
   display: flex;
 }
@@ -1519,7 +1519,7 @@ body::-webkit-scrollbar-thumb {
   margin-bottom: 10rem;
 }
 
-@media screen and (width >= 999.9px) {
+@media screen and (min-width: 999.9px) {
   .contest {
     padding: 196rem 0 0;
   }
@@ -1572,8 +1572,8 @@ body::-webkit-scrollbar-thumb {
   }
 
   .photos__field {
-    align-items: center;
     min-height: 80rem;
+    align-items: center;
     padding: 20rem 270rem 16rem 94rem;
   }
 
@@ -1604,10 +1604,10 @@ body::-webkit-scrollbar-thumb {
   }
 
   .contest-form__agreement .custom-checkbox {
-    border: 1rem solid #3033404d;
-    border-radius: 7rem;
     min-width: 23rem;
     min-height: 23rem;
+    border: 1rem solid #3033404d;
+    border-radius: 7rem;
     margin-right: 15rem;
     display: inline-block;
   }
@@ -1631,7 +1631,7 @@ body::-webkit-scrollbar-thumb {
     display: flex;
   }
 
-  .photos__item:nth-child(odd) {
+  .photos__item:nth-child(2n+1) {
     margin-right: 10rem;
   }
 
@@ -1645,9 +1645,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   .photos__item .photo-preview {
-    border-radius: 5rem;
     width: 144rem;
     height: 95rem;
+    border-radius: 5rem;
     margin-bottom: 6rem;
   }
 
@@ -1656,11 +1656,11 @@ body::-webkit-scrollbar-thumb {
   }
 
   .success-popup__content {
+    width: 988rem;
     text-align: center;
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    width: 988rem;
     padding: 60rem;
     display: flex;
   }
@@ -1687,10 +1687,10 @@ body::-webkit-scrollbar-thumb {
   }
 
   .success-popup__buttons {
+    max-width: 720rem;
+    width: 100%;
     flex-flow: row;
     align-self: stretch;
-    width: 100%;
-    max-width: 720rem;
     margin: 60rem auto 0;
     display: flex;
   }
@@ -1707,11 +1707,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .footer__container {
+  width: 100%;
+  max-width: 1332rem;
   background-color: #fff;
   border-radius: 20rem;
   flex-direction: column;
-  width: 100%;
-  max-width: 1332rem;
   margin: 0 auto;
   padding: 40rem 142rem 60rem;
   display: flex;
@@ -1762,7 +1762,7 @@ body::-webkit-scrollbar-thumb {
   padding: 21rem 0 0 20rem;
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   .footer {
     border-radius: 0;
     margin-bottom: 0;
@@ -1771,11 +1771,11 @@ body::-webkit-scrollbar-thumb {
   }
 
   .footer__container {
+    width: 100%;
+    max-width: 1332rem;
     background-color: #fff;
     border-radius: 0;
     flex-direction: column;
-    width: 100%;
-    max-width: 1332rem;
     margin: 0 auto;
     padding: 27rem 15rem 60rem;
     display: flex;
@@ -1828,12 +1828,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .quiz__wrapper, .quiz__result-wrapper {
+  height: 566rem;
+  width: 100%;
+  max-width: 1332rem;
   background: #fff;
   border-radius: 20rem;
   flex-direction: row;
-  width: 100%;
-  max-width: 1332rem;
-  height: 566rem;
   margin: 0 auto 100rem;
   padding: 50rem 44rem 50rem 50rem;
   display: flex;
@@ -1853,19 +1853,19 @@ body::-webkit-scrollbar-thumb {
 }
 
 .quiz__progress {
-  background: #e9eff7;
-  border-radius: 4.5rem;
   width: 520rem;
   height: 9rem;
+  background: #e9eff7;
+  border-radius: 4.5rem;
   margin-bottom: 55rem;
   overflow: hidden;
 }
 
 .quiz__progress-line {
+  height: 9rem;
+  width: 17%;
   background-color: #077bed;
   border-radius: 4.5rem;
-  width: 17%;
-  height: 9rem;
 }
 
 .quiz__title {
@@ -1885,19 +1885,19 @@ body::-webkit-scrollbar-thumb {
 }
 
 .quiz__answers {
-  gap: 14rem;
   width: 100%;
+  gap: 14rem;
   display: flex;
 }
 
 .quiz__answer {
+  width: 164rem;
+  height: 53rem;
   color: #303340;
   cursor: pointer;
   background-color: #e9eff7;
   border: none;
   border-radius: 12rem;
-  width: 164rem;
-  height: 53rem;
   font-size: 16rem;
   font-weight: 700;
   line-height: 19rem;
@@ -1973,11 +1973,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .quiz__result-button {
+  width: 267rem;
   color: #fff;
   cursor: pointer;
   background-color: #077bed;
   border-radius: 12rem;
-  width: 267rem;
   padding: 17rem 36rem;
   font-size: 16rem;
   font-weight: 700;
@@ -1991,12 +1991,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .quiz__result-button_close {
+  width: 31rem;
+  height: 31rem;
   color: #0000;
   cursor: pointer;
   background: url("show.04705287.svg") 0 0 / cover no-repeat;
   border: none;
-  width: 31rem;
-  height: 31rem;
   position: absolute;
   top: -6rem;
   right: 0;
@@ -2010,12 +2010,12 @@ body::-webkit-scrollbar-thumb {
 }
 
 .quiz__result-info {
+  width: 18rem;
+  height: 18rem;
   color: #0000;
   cursor: pointer;
   background: url("promo_info.e70dc1b5.svg") 0 0 / cover no-repeat;
   border: none;
-  width: 18rem;
-  height: 18rem;
   position: absolute;
   top: 20rem;
   right: 20rem;
@@ -2033,9 +2033,9 @@ body::-webkit-scrollbar-thumb {
 
 .quiz__result-promocode_active {
   color: #8e9cae;
+  width: 513rem;
   background: #fff;
   border-radius: 8rem;
-  width: 513rem;
   padding: 12rem 16rem;
   font-size: 12rem;
   font-weight: 400;
@@ -2050,18 +2050,18 @@ body::-webkit-scrollbar-thumb {
   display: none;
 }
 
-@media screen and (width <= 999.9px) {
+@media screen and (max-width: 999.9px) {
   .quiz__wrapper {
-    flex-direction: column;
     height: 662rem;
+    flex-direction: column;
     margin: 0 auto;
     padding: 40rem 12rem 14rem;
   }
 
   .quiz__content {
+    height: 301rem;
     flex-direction: column;
     justify-content: space-between;
-    height: 301rem;
     padding: 13rem 0 0;
     display: flex;
   }
@@ -2102,8 +2102,8 @@ body::-webkit-scrollbar-thumb {
   }
 
   .quiz__answer {
-    color: #303340;
     width: 100%;
+    color: #303340;
   }
 
   .quiz__answer:focus {
@@ -2115,7 +2115,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   .quiz__check {
+    height: 53rem;
     cursor: pointer;
+    width: 100%;
     color: #fff;
     pointer-events: none;
     background-color: #d0d0d0;
@@ -2123,8 +2125,6 @@ body::-webkit-scrollbar-thumb {
     border-radius: 12rem;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 53rem;
     margin-top: 8rem;
     font-size: 16rem;
     font-weight: 700;
@@ -2133,12 +2133,12 @@ body::-webkit-scrollbar-thumb {
   }
 
   .quiz__answer-wrapper_green, .quiz__answer-wrapper_red {
-    z-index: 2;
-    flex-direction: column;
-    justify-content: space-between;
     width: 100%;
     height: auto;
     min-height: 395rem;
+    z-index: 2;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 20rem 12rem 12rem;
     animation: 1s forwards ani;
     display: flex;
@@ -2170,13 +2170,13 @@ body::-webkit-scrollbar-thumb {
   }
 
   .quiz__answer-button {
+    width: 100%;
+    height: 53rem;
     color: #303340;
     cursor: pointer;
     background-color: #fff;
     border: none;
     border-radius: 12rem;
-    width: 100%;
-    height: 53rem;
     font-size: 16rem;
     font-weight: 700;
     line-height: 19rem;
@@ -2184,8 +2184,8 @@ body::-webkit-scrollbar-thumb {
   }
 
   .quiz__result-wrapper {
-    flex-direction: column;
     height: 671rem;
+    flex-direction: column;
     margin: 0 auto;
     padding: 46rem 12rem 50rem;
     display: flex;
@@ -2203,9 +2203,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   .quiz__result-img {
+    height: 155rem;
     object-fit: cover;
     border-radius: 12rem;
-    height: 155rem;
   }
 
   .quiz__result-content {
@@ -2237,17 +2237,17 @@ body::-webkit-scrollbar-thumb {
   }
 
   .quiz__result-button {
+    width: 100%;
     color: #fff;
     text-align: center;
-    width: 100%;
     font-size: 14rem;
     line-height: 16rem;
   }
 
   .quiz__result-info {
-    background: url("promo_info.e70dc1b5.svg") 0 0 / cover no-repeat;
     width: 16rem;
     height: 16rem;
+    background: url("promo_info.e70dc1b5.svg") 0 0 / cover no-repeat;
     padding: 0;
     position: absolute;
     top: 12rem;
@@ -2256,10 +2256,10 @@ body::-webkit-scrollbar-thumb {
 
   .quiz__result-promocode_active {
     color: #8e9cae;
+    width: 351rem;
     z-index: 10;
     background: #f4f7fb;
     border-radius: 8rem;
-    width: 351rem;
     padding: 0 16rem 17rem 24rem;
     font-size: 12rem;
     font-weight: 400;
@@ -2276,9 +2276,9 @@ body::-webkit-scrollbar-thumb {
   }
 
   .quiz__result-button_close {
-    background: url("close-mob.3a4a824a.svg") no-repeat;
     width: 24rem;
     height: 24rem;
+    background: url("close-mob.3a4a824a.svg") no-repeat;
     position: absolute;
     top: -190rem;
     right: 0;
@@ -2286,11 +2286,11 @@ body::-webkit-scrollbar-thumb {
   }
 
   .quiz__result-close {
+    width: 53rem;
+    height: 4rem;
     background-color: #0000003d;
     border: none;
     border-radius: 2rem;
-    width: 53rem;
-    height: 4rem;
     margin: 8rem auto 12rem;
     transition: background-color .3s;
     display: block;
