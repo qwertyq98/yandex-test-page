@@ -10,6 +10,7 @@
   "staticFiles": {
     "staticPath": "src/images"
   },
+  "homepage": "https://github.com/qwertyq98/yandex-test-page#readme",
   "scripts": {
     "start": "concurrently  \"npm:parcel-dev\" \"npm:json-server\"",
     "parcel-dev": "npm run clean && parcel src/*.html --no-cache --port 1234",
@@ -22,7 +23,13 @@
     "lint:fix": "eslint --cache . --fix",
     "format:check": "prettier --check \"src/**/*\"",
     "format:fix": "prettier --write \"src/**/*\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy": "gh-pages -d dist",
+    "build": "parcel build ./src/index.html --public-url ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qwertyq98/yandex-test-page.git"
   },
   "ntl": {
     "descriptions": {
@@ -45,7 +52,7 @@
   "license": "ISC",
   "browserslist": "> 0.25%, not dead",
   "devDependencies": {
-    "@parcel/transformer-sass": "2.8.3",
+    "@parcel/transformer-sass": "^2.11.0",
     "@types/animejs": "^3.1.7",
     "@types/dropzone": "^5.7.4",
     "@types/lodash": "^4.14.191",
@@ -58,6 +65,7 @@
     "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "gh-pages": "^2.0.1",
     "husky": "^8.0.3",
     "json-server": "^0.17.2",
     "lint-staged": "^13.2.0",
